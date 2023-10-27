@@ -35,5 +35,29 @@ namespace Negocio
                 throw ex;
             }
         }
+        public void agregar(Fabricante nuevoFabricante)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta = "INSERT INTO FABRICANTES (Nombre) VALUES (@Nombre)";
+                datos.setearConsulta(consulta);
+
+                
+                datos.setearParametro("@Nombre", nuevoFabricante.Nombre);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

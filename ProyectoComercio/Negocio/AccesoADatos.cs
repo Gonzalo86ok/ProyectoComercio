@@ -39,7 +39,7 @@ namespace Negocio
                 throw ex;
             }
         }
-        public void ejecutarAcccion()
+        public void ejecutarAccion()
         {
             comando.Connection = conexion;
             try

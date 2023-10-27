@@ -35,5 +35,31 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public void agregar(Sucursal nuevaSucursal)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta = "INSERT INTO SUCURSALES (Nombre, Direccion) VALUES (@Nombre, @Direccion)";
+                datos.setearConsulta(consulta);
+
+                
+                datos.setearParametro("@Nombre", nuevaSucursal.Nombre);
+                datos.setearParametro("@Direccion", nuevaSucursal.Direccion);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

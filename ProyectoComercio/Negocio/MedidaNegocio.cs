@@ -34,5 +34,29 @@ namespace Negocio
                 throw ex;
             }
         }
+        public void agregar(Medida nuevaMedida)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta = "INSERT INTO MEDIDAS (Tipo) VALUES (@Tipo)";
+                datos.setearConsulta(consulta);
+
+                // Usar parámetros para evitar la inyección de SQL y mejorar la seguridad
+                datos.setearParametro("@Tipo", nuevaMedida.Tipo);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
