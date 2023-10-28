@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    internal class SucursalNegocio
+    public class SucursalNegocio
     {
         public List<Sucursal> listar()
         {

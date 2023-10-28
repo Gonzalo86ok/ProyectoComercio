@@ -7,7 +7,7 @@ using Dominio;
 
 namespace Negocio
 {
-    internal class CategoriaNegocio
+    public class CategoriaNegocio
     {
         public List<Categoria> listar()
         {
@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion from CATEGORIAS");
+                datos.setearConsulta("select Id, Tipo from CATEGORIAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())

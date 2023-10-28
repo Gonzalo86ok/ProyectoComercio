@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    internal class MedidaNegocio
+    public class MedidaNegocio
     {
         public List<Medida> listar()
         {
@@ -23,7 +23,7 @@ namespace Negocio
                 {
                     Medida aux = new Medida();
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Tipo = (string)datos.Lector["Descripcion"];
+                    aux.Tipo = (string)datos.Lector["Tipo"];
 
                     lista.Add(aux);
                 }
