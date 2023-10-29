@@ -26,11 +26,11 @@
                             <h5 class="card-title">Formulario de Inicio de Sesión</h5>
                                 <div class="mb-3">
                                     <label for="inputEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail">
+                                    <asp:TextBox  type="email" ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword">
+                                    <asp:TextBox  type="password" ID="txtPassword" runat="server" CssClass="form-control"></asp:TextBox>                      
                                 </div>
                                 <div class="mb-3">                                    
                                          <label class="form-check-label" for="gridCheck1">¿Te olvidaste tu contraseña?</label>
