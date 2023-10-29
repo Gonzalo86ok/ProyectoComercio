@@ -67,19 +67,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="CompraPage.aspx" />
+    <Content Include="CajaPage.aspx" />
+    <Content Include="ClientePage.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="InventarioPage.aspx" />
+    <Content Include="PrecioPage.aspx" />
     <Content Include="Productos.aspx" />
+    <Content Include="ProveedorPage.aspx" />
+    <Content Include="UsuarioPage.aspx" />
+    <Content Include="VentaPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="CompraPage.aspx.cs">
+      <DependentUpon>CompraPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="CompraPage.aspx.designer.cs">
+      <DependentUpon>CompraPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CajaPage.aspx.cs">
+      <DependentUpon>CajaPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CajaPage.aspx.designer.cs">
+      <DependentUpon>CajaPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientePage.aspx.cs">
+      <DependentUpon>ClientePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientePage.aspx.designer.cs">
+      <DependentUpon>ClientePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -91,12 +112,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InventarioPage.aspx.cs">
+      <DependentUpon>InventarioPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InventarioPage.aspx.designer.cs">
+      <DependentUpon>InventarioPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PrecioPage.aspx.cs">
+      <DependentUpon>PrecioPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrecioPage.aspx.designer.cs">
+      <DependentUpon>PrecioPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
@@ -106,6 +141,27 @@
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorPage.aspx.cs">
+      <DependentUpon>ProveedorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProveedorPage.aspx.designer.cs">
+      <DependentUpon>ProveedorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioPage.aspx.cs">
+      <DependentUpon>UsuarioPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioPage.aspx.designer.cs">
+      <DependentUpon>UsuarioPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VentaPage.aspx.cs">
+      <DependentUpon>VentaPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VentaPage.aspx.designer.cs">
+      <DependentUpon>VentaPage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />
