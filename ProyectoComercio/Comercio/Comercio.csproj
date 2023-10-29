@@ -76,6 +76,7 @@
     <Content Include="PrecioPage.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="ProveedorPage.aspx" />
+    <Content Include="SucursalPage.aspx" />
     <Content Include="UsuarioPage.aspx" />
     <Content Include="VentaPage.aspx" />
     <Content Include="Web.config" />
@@ -147,6 +148,13 @@
     </Compile>
     <Compile Include="ProveedorPage.aspx.designer.cs">
       <DependentUpon>ProveedorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SucursalPage.aspx.cs">
+      <DependentUpon>SucursalPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SucursalPage.aspx.designer.cs">
+      <DependentUpon>SucursalPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UsuarioPage.aspx.cs">
       <DependentUpon>UsuarioPage.aspx</DependentUpon>
