@@ -24,7 +24,7 @@ namespace Negocio
                 {
                     Fabricante aux = new Fabricante();
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Nombre = (string)datos.Lector["Descripcion"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
 
                     lista.Add(aux);
                 }

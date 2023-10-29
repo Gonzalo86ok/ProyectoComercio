@@ -7,5 +7,6 @@
     <asp:GridView runat="server" ID="dgvFabricante"></asp:GridView>
     <asp:GridView runat="server" ID="dgvMedida"></asp:GridView>
     <asp:GridView runat="server" ID="dgvSucursal"></asp:GridView>
+    <asp:GridView runat="server" ID="dgvProducto"></asp:GridView>
 
 </asp:Content>

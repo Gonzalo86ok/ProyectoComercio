@@ -18,8 +18,21 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT p.Id, p.Codigo, p.Nombre, p.Descripcion, p.IdFabricante, p.IdCategoria, p.IdMedida, p.Precio, p.Activo,\r\n       f.Nombre AS NombreFabricante, c.Tipo AS TipoCategoria, me.Tipo AS TipoMedida\r\nFROM PRODUCTOS AS p\r\nINNER JOIN FABRICANTES AS f ON p.IdFabricante = f.Id\r\nINNER JOIN CATEGORIAS AS c ON p.IdCategoria = c.Id\r\nINNER JOIN MEDIDAS AS me ON p.IdMedida = me.Id\r\n";
-
+                string consulta =
+                    "SELECT " +
+                        "P.Id, " +
+                        "P.Codigo, " +
+                        "P.Nombre, " +
+                        "P.Descripcion, " +
+                        "P.Precio, " +
+                        "P.Activo, " +
+                        "C.Tipo AS Categoria, " +
+                        "F.Nombre AS Fabricante, " +
+                        "M.Tipo AS Medida " +
+                    "FROM PRODUCTOS AS P " +
+                    "INNER JOIN CATEGORIAS AS C ON P.IdCategoria = C.Id " +
+                    "INNER JOIN FABRICANTES AS F ON P.IdFabricante = F.Id " +
+                    "INNER JOIN MEDIDAS AS M ON P.IdMedida = M.Id";
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -31,29 +44,17 @@ namespace Negocio
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    
-                    aux.Fabricante = new Fabricante();
-                    aux.Fabricante.Id = (int)datos.Lector["Id"];
-                    aux.Fabricante.Nombre = (string)datos.Lector["Nombre"];
-                    
-                    aux.Medida = new Medida();
-                    aux.Medida.Id = (int)datos.Lector["IdMedida"];
-                    aux.Medida.Tipo = (string)datos.Lector["Tipo"];
-                    
-                    aux.Categoria = new Categoria();
-                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Categoria")))
-                    {
-                        aux.Categoria.Tipo = (string)datos.Lector["Tipo"];
-                    }
-                    else
-                    {
-                        aux.Categoria.Tipo = "";
-                    }
-                    
                     aux.Precio = (decimal)datos.Lector["Precio"];
-                   
                     aux.Activo = (bool)datos.Lector["Activo"];
+
+                    aux.Fabricante = new Fabricante();
+                    aux.Fabricante.Nombre = (string)datos.Lector["Fabricante"];
+
+                    aux.Medida = new Medida();
+                    aux.Medida.Tipo = (string)datos.Lector["Medida"];
+
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.Tipo = (string)datos.Lector["Categoria"];
 
                     lista.Add(aux);
                 }
@@ -68,6 +69,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
         public List<Producto> listar2()
         {
             List<Producto> lista = new List<Producto>();
@@ -135,15 +137,15 @@ namespace Negocio
 
                 dato.setearConsulta(consulta);
 
-                
+
                 dato.setearParametro("@Codigo", nuevo.Codigo);
                 dato.setearParametro("@Nombre", nuevo.Nombre);
                 dato.setearParametro("@Descripcion", nuevo.Descripcion);
-                dato.setearParametro("@IdMarca", nuevo.Fabricante.Id); 
-                dato.setearParametro("@IdCategoria", nuevo.Categoria.Id); 
+                dato.setearParametro("@IdMarca", nuevo.Fabricante.Id);
+                dato.setearParametro("@IdCategoria", nuevo.Categoria.Id);
                 dato.setearParametro("@Precio", nuevo.Precio);
 
-                
+
                 dato.ejecutarAccion();
             }
             catch (Exception ex)
