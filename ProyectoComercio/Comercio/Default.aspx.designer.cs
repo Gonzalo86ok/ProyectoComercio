@@ -15,30 +15,57 @@ namespace Comercio
     {
 
         /// <summary>
-        /// lbVenta control.
+        /// lbVentaDia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVenta;
+        protected global::System.Web.UI.WebControls.Label lbVentaDia;
 
         /// <summary>
-        /// lbGasto control.
+        /// lbGastoDia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGasto;
+        protected global::System.Web.UI.WebControls.Label lbGastoDia;
 
         /// <summary>
-        /// lbRendimiento control.
+        /// lbRendimientoDia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbRendimiento;
+        protected global::System.Web.UI.WebControls.Label lbRendimientoDia;
+
+        /// <summary>
+        /// lbVentaMes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbVentaMes;
+
+        /// <summary>
+        /// lbGastoMes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGastoMes;
+
+        /// <summary>
+        /// lbRendimientoMes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbRendimientoMes;
     }
 }
