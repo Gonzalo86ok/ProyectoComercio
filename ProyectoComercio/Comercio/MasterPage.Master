@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
         <div>
             <div class="p-3 text-center text-primary-emphasis bg-primary-subtle rounded-1">
-                <h4>PANADERIAS MANTECA</h4>
+                <h4>MANTECA PANADERIAS</h4>
             </div>
             <%-- Inicio --%>
             <nav class="navbar navbar-expand-lg bg-primary">

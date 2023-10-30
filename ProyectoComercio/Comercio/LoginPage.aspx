@@ -12,7 +12,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="p-3 text-center text-primary-emphasis bg-primary-subtle rounded-1">
-            <h4>PANADERIAS MANTECA</h4>
+            <h4>MANTECA PANADERIAS</h4>
         </div>
         <div>
             <h3 class="p-1 text-center">Login</h3>
@@ -23,14 +23,14 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Formulario de Inicio de Sesión</h5>
+                            <h5 class="card-title text-center">Inicio de Sesión</h5>
                                 <div class="mb-3">
-                                    <label for="inputEmail" class="form-label">Email</label>
-                                    <asp:TextBox  type="email" ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <label for="inputEmail" class="form-label">Usuario</label>
+                                    <asp:TextBox  type="email" ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputPassword" class="form-label">Password</label>
-                                    <asp:TextBox  type="password" ID="txtPassword" runat="server" CssClass="form-control"></asp:TextBox>                      
+                                    <label for="inputPassword" class="form-label">Contraseña: </label>
+                                    <asp:TextBox  type="password" ID="txtContraseña" runat="server" CssClass="form-control"></asp:TextBox>                      
                                 </div>
                                 <div class="mb-3">                                    
                                          <label class="form-check-label" for="gridCheck1">¿Te olvidaste tu contraseña?</label>
