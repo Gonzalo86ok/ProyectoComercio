@@ -13,21 +13,17 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria();
-            CategoriaNegocio dato = new CategoriaNegocio();
-
             if (!IsPostBack)
             {
-                List<Categoria> listaCategoria = dato.listar();
-                dgvCategoria.DataSource = listaCategoria;
-                dgvCategoria.DataBind();
+                CargarCategorias();
             }
-
         }
-
-        protected void dgvCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        protected void CargarCategorias()
         {
-
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+            List<Categoria> listaCategoria = categoriaNegocio.listar();
+            rptCategorias.DataSource = listaCategoria;
+            rptCategorias.DataBind();
         }
     }
 }

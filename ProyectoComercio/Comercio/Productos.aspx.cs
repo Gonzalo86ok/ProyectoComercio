@@ -36,6 +36,7 @@ namespace Comercio
                 List<Medida> listaMedidas = medidaNegocio.listar();
                 List<Fabricante>listaFabricante =fabricanteNegocio.listar();
                 List<Producto> listaProductos = productoNegocio.listar();  
+
                 dgvCategoria.DataSource = listaCategoria;
                 dgvCategoria.DataBind();
 
@@ -49,10 +50,7 @@ namespace Comercio
                 dgvFabricante.DataBind();
 
                 dgvProducto.DataSource = listaProductos;
-                dgvProducto.DataBind();
-
-                
-                    
+                dgvProducto.DataBind();                             
             }
         }
     }
