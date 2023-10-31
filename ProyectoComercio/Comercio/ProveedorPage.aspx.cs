@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,14 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                FabricanteNegocio fabricanteNegocio = new FabricanteNegocio();                         
+                List<Fabricante> fabricantes = fabricanteNegocio.listar();
+                 
+                RepeaterFabricantes.DataSource = fabricantes;
+                RepeaterFabricantes.DataBind();             
+            }
 
         }
     }
