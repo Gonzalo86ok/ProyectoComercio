@@ -53,5 +53,10 @@ namespace Comercio
                 dgvProducto.DataBind();                             
             }
         }
+
+        protected void dgvProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
