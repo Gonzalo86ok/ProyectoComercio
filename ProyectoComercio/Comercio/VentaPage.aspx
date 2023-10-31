@@ -13,6 +13,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"><%# Eval("Tipo") %></h5>
+                                <p>Cantidad de Ventas: <%# Eval("CantidadVentas") %></p>
                             </div>
                         </div>
                     </ItemTemplate>

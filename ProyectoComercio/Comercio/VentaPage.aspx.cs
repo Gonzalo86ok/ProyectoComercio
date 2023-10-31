@@ -21,8 +21,15 @@ namespace Comercio
         protected void CargarCategorias()
         {
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-            List<Categoria> listaCategoria = categoriaNegocio.listar();
-            rptCategorias.DataSource = listaCategoria;
+            List<Categoria> listaCategorias = categoriaNegocio.listar();
+            List<Venta> listaVentas = new List<Venta>();
+
+            foreach (Categoria categoria in listaCategorias)
+            {
+                categoria.CantidadVentas = listaVentas.Count(venta => venta.VentaProducto.Categoria.Id == categoria.Id);
+            }
+
+            rptCategorias.DataSource = listaCategorias;
             rptCategorias.DataBind();
         }
     }
