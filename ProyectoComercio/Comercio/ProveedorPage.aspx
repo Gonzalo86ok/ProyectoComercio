@@ -12,9 +12,14 @@
                         <div class="card-body">
                             <h5 class="card-title"><%# Eval("Nombre") %></h5>                            
                         </div>
+                          <ItemTemplate>
+                        <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-primary" />
+                        <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger" />
+                    </ItemTemplate>
                     </div>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
     </div>
+        <asp:Button runat="server" Text="Agregar" CommandName="Agregar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger" />
 </asp:Content>
