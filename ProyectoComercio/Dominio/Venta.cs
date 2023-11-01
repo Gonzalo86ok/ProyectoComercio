@@ -8,7 +8,12 @@ namespace Dominio
 {
     public class Venta
     {
-        public Producto VentaProducto {  get; set; }
+        public int Id { get; set; }
+        public Producto Producto { get; set; }
         public decimal Cantidad { get; set; }
+        public int IdProducto { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Tipo { get; set; }
+        public int IdSucursal { get; set; }
     }
 }

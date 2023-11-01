@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categoria.cs" />
+    <Compile Include="Persona.cs" />
+    <Compile Include="Stock.cs" />
+    <Compile Include="TipoComercio.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="Fabricante.cs" />
     <Compile Include="Medida.cs" />
