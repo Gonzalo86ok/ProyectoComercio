@@ -17,38 +17,24 @@ namespace Comercio
             Categoria categoria = new Categoria();
             CategoriaNegocio dato = new CategoriaNegocio();
 
-            Sucursal sucursal = new Sucursal();
-            SucursalNegocio sucursalNegocio = new SucursalNegocio();
-
             Medida medida = new Medida();
             MedidaNegocio medidaNegocio = new MedidaNegocio();
-
-            Fabricante frabricante =new Fabricante();
-            FabricanteNegocio fabricanteNegocio = new FabricanteNegocio();
-
+        
             Producto producto = new Producto();
             ProductoNegocio productoNegocio = new ProductoNegocio();
             
             if (!IsPostBack)
             {
                 List<Categoria> listaCategoria = dato.listar();
-                List<Sucursal> listaSucursal = sucursalNegocio.listar();
-                List<Medida> listaMedidas = medidaNegocio.listar();
-                List<Fabricante>listaFabricante =fabricanteNegocio.listar();
+                List<Medida> listaMedidas = medidaNegocio.listar();             
                 List<Producto> listaProductos = productoNegocio.listar();  
 
                 dgvCategoria.DataSource = listaCategoria;
                 dgvCategoria.DataBind();
 
-                dgvSucursal.DataSource = listaSucursal;
-                dgvSucursal.DataBind();
-
                 dgvMedida.DataSource = listaMedidas;
                 dgvMedida.DataBind();
-
-                dgvFabricante.DataSource = listaFabricante;
-                dgvFabricante.DataBind();
-
+            
                 dgvProducto.DataSource = listaProductos;
                 dgvProducto.DataBind();                             
             }

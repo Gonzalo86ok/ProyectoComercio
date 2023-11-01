@@ -13,5 +13,10 @@ namespace Comercio
         {
 
         }
+        protected void btnIniciarVenta_Click(object sender, EventArgs e)
+        {
+           
+        }
+
     }
 }
