@@ -26,7 +26,7 @@ namespace Comercio
 
             foreach (Categoria categoria in listaCategorias)
             {
-                categoria.CantidadVentas = listaVentas.Count(venta => venta.VentaProducto.Categoria.Id == categoria.Id);
+                categoria.CantidadVentas = listaVentas.Count(venta => venta.Producto.Categoria.Id == categoria.Id);
             }
 
             rptCategorias.DataSource = listaCategorias;

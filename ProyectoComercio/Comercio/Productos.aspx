@@ -21,6 +21,8 @@
                     <asp:Label runat="server" Text="Categoría:" CssClass="form-label" />
                     <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
 
+                    <asp:Label runat="server" Text="Medida:" CssClass="form-label" />
+                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control"></asp:DropDownList>
 
                     <asp:Label runat="server" Text="Fabricante:" CssClass="form-label" />
                     <asp:DropDownList ID="ddlFabricante" runat="server" CssClass="form-control"></asp:DropDownList>
