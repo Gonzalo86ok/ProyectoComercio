@@ -20,8 +20,16 @@ namespace Comercio
                 List<Sucursal> listaSucursal = sucursalNegocio.listar();               
 
                 lvSucursal.DataSource = listaSucursal;
-                lvSucursal.DataBind();              
+                lvSucursal.DataBind();
+
+                dgvSucursal.DataSource = listaSucursal;
+                dgvSucursal.DataBind();
             }
+        }
+
+        protected void dgvSucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }   
 }
