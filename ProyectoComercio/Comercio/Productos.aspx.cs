@@ -79,5 +79,40 @@ namespace Comercio
         {
 
         }
+
+        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                Producto nuevo = new Producto();
+                ProductoNegocio productoNegocio = new ProductoNegocio();
+
+                nuevo.Codigo = txtCodigo.Text;
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDescripcion.Text;
+                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+
+                nuevo.Categoria = new Categoria();
+                nuevo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
+
+                nuevo.Fabricante = new Fabricante();
+                nuevo.Fabricante.Id = int.Parse(dllFabricante.SelectedValue);
+
+                nuevo.Medida = new Medida();
+                nuevo.Medida.Id = int.Parse(dllMedida.SelectedValue);
+
+                productoNegocio.agregar(nuevo);
+                Response.Redirect("Productos.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+
+            
+        }
     }
 }

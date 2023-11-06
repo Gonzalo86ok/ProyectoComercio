@@ -40,7 +40,7 @@
                                 <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" />
 
                                 <asp:Label runat="server" Text="Precio:" CssClass="form-label" />
-                                <asp:TextBox runat="server" ID="Precio" CssClass="form-control" />
+                                <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
 
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <asp:Label runat="server" Text="Medida:" CssClass="form-label" />
                                 <asp:DropDownList ID="dllMedida" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                                <asp:Button runat="server" ID="btnAgregarFabricante" Text="Agregar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
+                                <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" Text="Agregar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
 
                             </div>
                         </div>

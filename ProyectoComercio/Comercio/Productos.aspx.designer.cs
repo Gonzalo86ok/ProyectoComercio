@@ -42,13 +42,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
         /// <summary>
-        /// Precio control.
+        /// txtPrecio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Precio;
+        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
 
         /// <summary>
         /// ddlCategoria control.
@@ -78,13 +78,13 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.DropDownList dllMedida;
 
         /// <summary>
-        /// btnAgregarFabricante control.
+        /// btnAgregarProducto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarFabricante;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProducto;
 
         /// <summary>
         /// dgvProducto control.
