@@ -53,15 +53,8 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <script>
-            const loadingIndicator = document.getElementById('loadingIndicator');
+       
 
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    loadingIndicator.classList.remove('d-none');
-                });
-            });
-        </script>
     </form>
 </body>
 </html>

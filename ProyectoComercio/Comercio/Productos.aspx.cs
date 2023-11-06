@@ -22,21 +22,56 @@ namespace Comercio
         
             Producto producto = new Producto();
             ProductoNegocio productoNegocio = new ProductoNegocio();
+
+            Fabricante fabricante= new Fabricante();
+            FabricanteNegocio fabricanteNegocio = new FabricanteNegocio();
             
             if (!IsPostBack)
             {
-                List<Categoria> listaCategoria = dato.listar();
-                List<Medida> listaMedidas = medidaNegocio.listar();             
-                List<Producto> listaProductos = productoNegocio.listar();  
+                try
+                {
+                    List<Categoria> listaCategoria = dato.listar();
+                    List<Medida> listaMedidas = medidaNegocio.listar();
+                    List<Producto> listaProductos = productoNegocio.listar();
+                    List<Fabricante> listaFabricante = fabricanteNegocio.listar();
 
-                dgvCategoria.DataSource = listaCategoria;
-                dgvCategoria.DataBind();
+                    dgvCategoria.DataSource = listaCategoria;
+                    dgvCategoria.DataBind();
 
-                dgvMedida.DataSource = listaMedidas;
-                dgvMedida.DataBind();
-            
-                dgvProducto.DataSource = listaProductos;
-                dgvProducto.DataBind();                             
+                    dgvMedida.DataSource = listaMedidas;
+                    dgvMedida.DataBind();
+
+                    dgvFabricante.DataSource = listaFabricante;
+                    dgvFabricante.DataBind();
+
+
+                    dgvProducto.DataSource = listaProductos;
+                    dgvProducto.DataBind();
+
+                    //Desplegables de Producto sobre categoria
+                    ddlCategoria.DataSource = listaCategoria;
+                    ddlCategoria.DataValueField = "Id";
+                    ddlCategoria.DataTextField = "Tipo";
+                    ddlCategoria.DataBind();
+
+                    //Desplegables de Producto sobre Medida
+                    dllMedida.DataSource = listaMedidas;
+                    dllMedida.DataValueField = "Id";
+                    dllMedida.DataTextField = "Tipo";
+                    dllMedida.DataBind();
+
+                    //Desplegables de Producto sobre Fabricante
+                    dllFabricante.DataSource = listaFabricante;
+                    dllFabricante.DataValueField = "Id";// Dato que va a estar escondido
+                    dllFabricante.DataTextField = "Nombre"; // Dato que va a mostrar
+                    dllFabricante.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw;
+                }
+
             }
         }
 
