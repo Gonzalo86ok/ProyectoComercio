@@ -48,71 +48,21 @@ namespace Comercio
                     dgvProducto.DataSource = listaProductos;
                     dgvProducto.DataBind();
 
-                    //Desplegables de Producto sobre categoria
-                    ddlCategoria.DataSource = listaCategoria;
-                    ddlCategoria.DataValueField = "Id";
-                    ddlCategoria.DataTextField = "Tipo";
-                    ddlCategoria.DataBind();
-
-                    //Desplegables de Producto sobre Medida
-                    dllMedida.DataSource = listaMedidas;
-                    dllMedida.DataValueField = "Id";
-                    dllMedida.DataTextField = "Tipo";
-                    dllMedida.DataBind();
-
-                    //Desplegables de Producto sobre Fabricante
-                    dllFabricante.DataSource = listaFabricante;
-                    dllFabricante.DataValueField = "Id";// Dato que va a estar escondido
-                    dllFabricante.DataTextField = "Nombre"; // Dato que va a mostrar
-                    dllFabricante.DataBind();
                 }
                 catch (Exception ex)
                 {
                     Session.Add("error", ex);
                     throw;
                 }
-
             }
         }
-
         protected void dgvProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
-        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        protected void btnAgregarProducto_Click1(object sender, EventArgs e)
         {
-            try
-            {
-                
-                Producto nuevo = new Producto();
-                ProductoNegocio productoNegocio = new ProductoNegocio();
-
-                nuevo.Codigo = txtCodigo.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Precio = decimal.Parse(txtPrecio.Text);
-
-                nuevo.Categoria = new Categoria();
-                nuevo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
-
-                nuevo.Fabricante = new Fabricante();
-                nuevo.Fabricante.Id = int.Parse(dllFabricante.SelectedValue);
-
-                nuevo.Medida = new Medida();
-                nuevo.Medida.Id = int.Parse(dllMedida.SelectedValue);
-
-                productoNegocio.agregar(nuevo);
-                Response.Redirect("Productos.aspx", false);
-
-            }
-            catch (Exception ex)
-            {
-                Session.Add("error", ex);
-                throw;
-            }
-
-            
+            Response.Redirect("Formulario.aspx");
         }
     }
 }

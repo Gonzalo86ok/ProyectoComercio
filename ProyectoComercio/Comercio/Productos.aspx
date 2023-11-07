@@ -19,104 +19,66 @@
                 <a class="nav-link" id="fabricante-tab" data-bs-toggle="tab" data-bs-target="#fabricante" role="tab" aria-controls="fabricante" aria-selected="false">Fabricante</a>
             </li>
         </ul>
-
         <div class="tab-content" id="myTabsContent">
             <div class="tab-pane fade show active" id="producto" role="tabpanel" aria-labelledby="producto-tab">
                 <!-- Contenido de la pestaña "Producto" -->
-
                 <div class="form-container border border-secondary p-3">
-                    <h5>Agregar Producto</h5>
+                    <div class="pb-4"></div>
+                    <div class="table-container pb-4 ">
+                        <asp:GridView runat="server" ID="dgvProducto" DataKeyNames="Id" OnSelectedIndexChanged="dgvProducto_SelectedIndexChanged" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Código">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Text='<%# Eval("Codigo") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="md-3">
-                                <asp:Label runat="server" Text="Código:" CssClass="form-label" />
-                                <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" />
+                                <asp:TemplateField HeaderText="Nombre">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Text='<%# Eval("Nombre") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                                <asp:Label runat="server" Text="Nombre:" CssClass="form-label" />
-                                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                                <asp:TemplateField HeaderText="Categoría">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Text='<%# Eval("Categoria") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                                <asp:Label runat="server" Text="Descripción:" CssClass="form-label" />
-                                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" />
+                                <asp:TemplateField HeaderText="Fabricante">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Text='<%# Eval("Fabricante") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                                <asp:Label runat="server" Text="Precio:" CssClass="form-label" />
-                                <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
+                                <asp:TemplateField HeaderText="Descripción">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                            </div>
-                        </div>
+                                <asp:TemplateField HeaderText="Medida">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Text='<%# Eval("Medida") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                        <div class="col-md-6">
-                            <div class="md-3">
-                                <asp:Label runat="server" Text="Categoría:" CssClass="form-label" />
-                                <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:TemplateField HeaderText="Precio">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Text='<%# Eval("Precio") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                                <asp:Label runat="server" Text="Fabricante o Marca:" CssClass="form-label" />
-                                <asp:DropDownList ID="dllFabricante" runat="server" CssClass="form-control"></asp:DropDownList>
-
-                                <asp:Label runat="server" Text="Medida:" CssClass="form-label" />
-                                <asp:DropDownList ID="dllMedida" runat="server" CssClass="form-control"></asp:DropDownList>
-
-                                <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" Text="Agregar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
-
-                            </div>
-                        </div>
+                                <asp:TemplateField HeaderText="Acciones">
+                                    <ItemTemplate>
+                                        <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-primary" />
+                                        <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-danger" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
                     </div>
-                </div>
-
-                <div class="pb-4"></div>
-                <div class="table-container pb-4 ">
-                    <asp:GridView runat="server" ID="dgvProducto" DataKeyNames="Id" OnSelectedIndexChanged="dgvProducto_SelectedIndexChanged" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
-                        <Columns>
-                            <asp:TemplateField HeaderText="Código">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# Eval("Codigo") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Nombre">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# Eval("Nombre") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Categoría">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# Eval("Categoria") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Fabricante">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# Eval("Fabricante") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Descripción">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Medida">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# Eval("Medida") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Precio">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# Eval("Precio") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Acciones">
-                                <ItemTemplate>
-                                    <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-primary" />
-                                    <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-danger" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
+                    <asp:Button runat="server" ID="btnAgregarProducto1" OnClick="btnAgregarProducto_Click1" Text="Agregar Producto" CssClass="btn btn-success" />
                 </div>
                 <!-- Agrega aquí los campos para Producto -->
             </div>
@@ -155,8 +117,6 @@
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-
-
                             </div>
                         </div>
                     </div>
@@ -165,8 +125,8 @@
                 <!-- Fin de los campos para Categoría -->
             </div>
             <div class="tab-pane fade" id="medida" role="tabpanel" aria-labelledby="medida-tab">
-                <!-- Contenido de la pestaña "Medida" -->            
-                                                
+                <!-- Contenido de la pestaña "Medida" -->
+
                 <div class="form-container border border-secondary p-3">
                     <div class="row">
                         <div class="col-md-6">
@@ -203,7 +163,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pb-4"></div>       
+                <div class="pb-4"></div>
                 <!--Fin delos campos para Fabricante -->
             </div>
 
