@@ -71,8 +71,8 @@
 
                                 <asp:TemplateField HeaderText="Acciones">
                                     <ItemTemplate>
-                                        <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-primary" />
-                                        <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-danger" />
+                                        <asp:Button runat="server" Text="Modificar" OnClick="btnModificar_Click" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-primary" />
+                                        <asp:Button runat="server" Text="Eliminar" OnClick="Eliminar_Click" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-danger" />                                       
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -210,4 +210,5 @@
                 <!-- Contenido de la pestaña " Fabricante" -->
             </div>
         </div>
+    </div>
 </asp:Content>

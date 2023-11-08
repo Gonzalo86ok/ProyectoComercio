@@ -27,21 +27,39 @@
                 <div class="md-3">
                     <asp:Label runat="server" Text="Categoría preestablecida" CssClass="form-label" />
                     <asp:DropDownList runat="server" ID="ddlCategoria" CssClass="form-control">
-
                     </asp:DropDownList>
 
                     <asp:Label runat="server" Text="Fabricante preestablecido" CssClass="form-label" />
                     <asp:DropDownList runat="server" ID="ddlFabricante" CssClass="form-control">
-
                     </asp:DropDownList>
 
                     <asp:Label runat="server" Text="Medida preestablecida" CssClass="form-label" />
                     <asp:DropDownList runat="server" ID="ddlMedida" CssClass="form-control">
-
                     </asp:DropDownList>
 
                     <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" Text="Agregar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
+                    <asp:Button runat="server" ID="btnCancelar" OnClick="Cancelar_Click" Text="Cancelar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
                 </div>
+            </div>
+             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <div class="row">
+                <div class="col-6">
+                    <asp:UpdatePanel ID="UpdatePanel" runat="server">
+                        <ContentTemplate>
+
+                    <div class="md-3">
+                        <asp:Button Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" />
+                    </div>
+
+                    <%if (ConfirmaEliminacion) {%>                              
+                        <div class="md-3">
+                            <asp:CheckBox Text="Confirmar Eliminación" ID="chkConfirmaEliminacion" runat="server" />
+                            <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" OnClick="btnConfirmaEliminar_Click" CssClass="btn btn-outline-danger" runat="server" />
+                        </div>
+                    <% } %>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
             </div>
         </div>
     </div>

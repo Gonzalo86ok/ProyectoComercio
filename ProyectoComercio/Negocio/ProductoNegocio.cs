@@ -11,7 +11,7 @@ namespace Negocio
 {
     public class ProductoNegocio
     {
-        public List<Producto> listar()
+        public List<Producto> listar(string id = "")
         {
             List<Producto> lista = new List<Producto>();
             AccesoADatos datos = new AccesoADatos();
@@ -32,7 +32,9 @@ namespace Negocio
                     "FROM PRODUCTOS AS P " +
                     "INNER JOIN CATEGORIAS AS C ON P.IdCategoria = C.Id " +
                     "INNER JOIN FABRICANTES AS F ON P.IdFabricante = F.Id " +
-                    "INNER JOIN MEDIDAS AS M ON P.IdMedida = M.Id";
+                    "INNER JOIN MEDIDAS AS M ON P.IdMedida = M.Id ";
+                if (id != "")
+                    consulta += " and P.Id = " + id;
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -69,7 +71,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public List<Producto> listar2()
         {
             List<Producto> lista = new List<Producto>();
@@ -159,6 +160,58 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
+        public void modificar(Producto nuevo)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "UPDATE PRODUCTOS SET Codigo = @Codigo , Nombre = @Nombre, Descripcion = @Descripcion, IdCategoria = @IdCategoria, IdFabricante = @IdFabricante, IdMedida = @IdMedida, Precio = @Precio where Id = @Id";
 
+                dato.setearConsulta(consulta);
+
+                dato.setearParametro("@Id", nuevo.Id);
+                dato.setearParametro("@Codigo", nuevo.Codigo);
+                dato.setearParametro("@Nombre", nuevo.Nombre);
+                dato.setearParametro("@Descripcion", nuevo.Descripcion);
+                dato.setearParametro("@IdCategoria", nuevo.Categoria.Id);
+                dato.setearParametro("@IdFabricante", nuevo.Fabricante.Id);
+                dato.setearParametro("@IdMedida", nuevo.Medida.Id);
+                dato.setearParametro("@Precio", nuevo.Precio);
+                dato.setearParametro("@Activo", nuevo.Activo);
+
+
+                dato.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+        }
+        public void eliminar(int id)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "delete PRODUCTOS where Id = @Id";
+
+                dato.setearConsulta(consulta);
+
+                dato.setearParametro("@Id", id);
+
+                dato.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+        }
     }
 }

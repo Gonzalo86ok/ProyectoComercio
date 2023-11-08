@@ -58,11 +58,25 @@ namespace Comercio
         }
         protected void dgvProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           
         }
+
         protected void btnAgregarProducto_Click1(object sender, EventArgs e)
         {
             Response.Redirect("Formulario.aspx");
+        }
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("Formulario.aspx?id=" + selectedId);
+        }
+
+        protected void Eliminar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("Formulario.aspx?id=" + selectedId);
         }
     }
 }
