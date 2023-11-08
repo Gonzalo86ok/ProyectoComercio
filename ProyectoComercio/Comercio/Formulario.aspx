@@ -26,13 +26,19 @@
             <div class="col-md-6">
                 <div class="md-3">
                     <asp:Label runat="server" Text="Categoría preestablecida" CssClass="form-label" />
-                    <asp:DropDownList runat="server" ID="ddlCategoria" CssClass="form-control"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlCategoria" CssClass="form-control">
+
+                    </asp:DropDownList>
 
                     <asp:Label runat="server" Text="Fabricante preestablecido" CssClass="form-label" />
-                    <asp:DropDownList runat="server" ID="ddlFabricante" CssClass="form-control"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlFabricante" CssClass="form-control">
+
+                    </asp:DropDownList>
 
                     <asp:Label runat="server" Text="Medida preestablecida" CssClass="form-label" />
-                    <asp:DropDownList runat="server" ID="ddlMedida" CssClass="form-control"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlMedida" CssClass="form-control">
+
+                    </asp:DropDownList>
 
                     <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" Text="Agregar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
                 </div>

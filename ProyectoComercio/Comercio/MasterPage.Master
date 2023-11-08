@@ -21,17 +21,12 @@
                 <div class="container-fluid" style="font-weight: bold; font-size: 16px;">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="Default.aspx">Inicio</a>
-                            <a class="nav-link" href="VentaPage.aspx">Venta</a>
-                            <a class="nav-link" href="CajaPage.aspx">Caja</a>
+                            <a class="nav-link active" aria-current="page" href="Default.aspx">Informes</a>
+                            <a class="nav-link" href="VentaPage.aspx">Venta</a>                           
                             <a class="nav-link" href="InventarioPage.aspx">Inventario</a>
-                            <a class="nav-link" href="ProveedorPage.aspx">Proveedor</a>
-                            <a class="nav-link" href="ClientePage.aspx">Cliente</a>
                             <a class="nav-link" href="Productos.aspx">Producto</a>
-                            <a class="nav-link" href="PrecioPage.aspx">Precio</a>
                             <a class="nav-link" href="UsuarioPage.aspx">Usuario</a>
                             <a class="nav-link" href="CompraPage.aspx">Compra</a>
-                            <a class="nav-link" href="SucursalPage.aspx">Sucursal</a>
                             <a class="nav-link disabled" aria-disabled="true"></a>
                         </div>
                     </div>
