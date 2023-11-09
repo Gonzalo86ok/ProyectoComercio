@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Negocio;
 
 namespace Comercio
 {
@@ -13,5 +15,29 @@ namespace Comercio
         {
 
         }
+        protected void btnAgregar_Click1(object sender, EventArgs e)
+        {
+            try
+            {
+                Usuario nuevo;
+                UsuarioNegocio negocio = new UsuarioNegocio();
+
+                nuevo = new Usuario(txtUsuario.Text, txtContraseña.Text, false);
+
+                nuevo.User = txtUsuario.Text;
+                nuevo.Pass = txtContraseña.Text;
+
+
+                negocio.agregar(nuevo);
+                Response.Redirect("UsuarioPage.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+
+        }
+
     }
 }

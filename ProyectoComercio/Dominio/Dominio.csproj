@@ -49,6 +49,7 @@
     <Compile Include="StockItem.cs" />
     <Compile Include="TipoComercio.cs" />
     <Compile Include="TipoRol.cs" />
+    <Compile Include="Usuario.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="Fabricante.cs" />
     <Compile Include="Medida.cs" />

@@ -101,7 +101,7 @@
                         </table>
                     </div>
 
-                    <asp:Button runat="server" ID="btnAgregarFabricante" Text="Agregar" CssClass="btn btn-secondary ml-2" Style="margin-right: 10px;" />
+                <asp:Button ID="btnAgregar" runat="server" Text="Agregar Usuario" OnClick="btnAgregar_Click1" CssClass="btn btn-success"/>
                 </div>
             </div>
         </div>
