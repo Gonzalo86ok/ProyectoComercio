@@ -46,6 +46,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Stock.cs" />
+    <Compile Include="StockItem.cs" />
     <Compile Include="TipoComercio.cs" />
     <Compile Include="TipoRol.cs" />
     <Compile Include="Venta.cs" />

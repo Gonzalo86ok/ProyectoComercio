@@ -15,48 +15,12 @@ namespace Comercio
     {
 
         /// <summary>
-        /// txtCodigoProducto control.
+        /// dgvStockItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoProducto;
-
-        /// <summary>
-        /// txtNombreProducto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreProducto;
-
-        /// <summary>
-        /// txtCantidadStock control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantidadStock;
-
-        /// <summary>
-        /// ddlSucursal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSucursal;
-
-        /// <summary>
-        /// btnAgregarProducto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarProducto;
+        protected global::System.Web.UI.WebControls.GridView dgvStockItem;
     }
 }

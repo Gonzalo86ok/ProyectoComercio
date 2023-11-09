@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,33 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            StockItem stockItem = new StockItem();
+            StockNegocio stockNegocio = new StockNegocio();
+            if (!IsPostBack)
+            {
+                try
+                {
+                    List<StockItem> listastockItem = stockNegocio.listarStockItem();
+
+                    dgvStockItem.DataSource = listastockItem;
+                    dgvStockItem.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw;
+                }
+
+            }
+        }
+
+        protected void btoModificar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+
+            Response.Redirect("FormularioStock.aspx?Id=" + selectedId);
 
         }
     }
