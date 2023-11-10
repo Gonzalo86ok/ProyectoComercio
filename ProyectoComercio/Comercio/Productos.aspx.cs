@@ -32,7 +32,7 @@ namespace Comercio
                 {
                     List<Categoria> listaCategoria = dato.listar();
                     List<Medida> listaMedidas = medidaNegocio.listar();
-                    List<Producto> listaProductos = productoNegocio.listar();
+                    List<Producto> listaProductos = productoNegocio.listarActivos();
                     List<Fabricante> listaFabricante = fabricanteNegocio.listar();
 
                     dgvCategoria.DataSource = listaCategoria;
@@ -65,18 +65,36 @@ namespace Comercio
         {
             Response.Redirect("Formulario.aspx");
         }
-        protected void btnModificar_Click(object sender, EventArgs e)
+        protected void btnModificarProducto_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             string selectedId = btn.CommandArgument;
             Response.Redirect("Formulario.aspx?id=" + selectedId);
         }
 
-        protected void Eliminar_Click(object sender, EventArgs e)
+        protected void EliminarProducto_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             string selectedId = btn.CommandArgument;
             Response.Redirect("Formulario.aspx?id=" + selectedId);
+        }
+        protected void agregarCategoria_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormularioCategoria.aspx");
+        }
+
+        protected void btnEliminarCategoria_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("Formulario.aspx?id=" + selectedId);
+        }
+
+        protected void btnModificarCategoria_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("FormularioCategoria.aspx?id=" + selectedId);
         }
     }
 }

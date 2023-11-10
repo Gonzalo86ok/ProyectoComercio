@@ -11,7 +11,7 @@ namespace Negocio
 {
     public class ProductoNegocio
     {
-        public List<Producto> listar(string id = "")
+        public List<Producto> listarActivos(string id = "")
         {
             List<Producto> lista = new List<Producto>();
             AccesoADatos datos = new AccesoADatos();
@@ -57,8 +57,8 @@ namespace Negocio
 
                     aux.Categoria = new Categoria();
                     aux.Categoria.Tipo = (string)datos.Lector["Categoria"];
-
-                    lista.Add(aux);
+                    if(aux.Activo == true)
+                        lista.Add(aux);
                 }
                 return lista;
             }
@@ -148,7 +148,6 @@ namespace Negocio
                 dato.setearParametro("@Precio", nuevo.Precio);
                 dato.setearParametro("@Activo", nuevo.Activo);
 
-
                 dato.ejecutarAccion();
             }
             catch (Exception ex)
@@ -179,7 +178,6 @@ namespace Negocio
                 dato.setearParametro("@Precio", nuevo.Precio);
                 dato.setearParametro("@Activo", nuevo.Activo);
 
-
                 dato.ejecutarAccion();
             }
             catch (Exception ex)
@@ -191,12 +189,12 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
-        public void eliminar(int id)
+        public void eliminacionLogica(int id)
         {
             AccesoADatos dato = new AccesoADatos();
             try
             {
-                string consulta = "delete PRODUCTOS where Id = @Id";
+                string consulta = "update PRODUCTOS set Activo = 0 where Id = @Id";
 
                 dato.setearConsulta(consulta);
 

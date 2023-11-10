@@ -41,26 +41,26 @@
                     <asp:Button runat="server" ID="btnCancelar" OnClick="Cancelar_Click" Text="Cancelar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
                 </div>
             </div>
-             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <div class="row">
                 <div class="col-6">
                     <asp:UpdatePanel ID="UpdatePanel" runat="server">
                         <ContentTemplate>
 
-                    <div class="md-3">
-                        <asp:Button Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" />
-                    </div>
+                            <div class="md-3">
+                                <asp:Button Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" />
+                            </div>
 
-                    <%if (ConfirmaEliminacion) {%>                              
-                        <div class="md-3">
-                            <asp:CheckBox Text="Confirmar Eliminación" ID="chkConfirmaEliminacion" runat="server" />
-                            <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" OnClick="btnConfirmaEliminar_Click" CssClass="btn btn-outline-danger" runat="server" />
-                        </div>
-                    <% } %>
-
+                            <%if (ConfirmaEliminacion)
+                            {%>
+                            <div class="md-3">
+                                <asp:CheckBox Text="Confirmar Eliminación" ID="chkConfirmaEliminacion" runat="server" />
+                                <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" OnClick="btnConfirmaEliminar_Click" CssClass="btn btn-outline-danger" runat="server" />
+                            </div>
+                            <% } %>
                         </ContentTemplate>
                     </asp:UpdatePanel>
+                </div>
             </div>
         </div>
-    </div>
 </asp:Content>

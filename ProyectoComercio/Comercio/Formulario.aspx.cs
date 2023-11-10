@@ -48,9 +48,8 @@ namespace Comercio
                 if (id != "" && !IsPostBack)
                 {
                     ProductoNegocio producto = new ProductoNegocio();
-                    List<Producto> lista = producto.listar(id);
+                    List<Producto> lista = producto.listarActivos(id);
                     Producto seleccionado = lista[0];
-
 
                     txtCodigo.Text = seleccionado.Codigo;
                     txtNombre.Text = seleccionado.Nombre;
@@ -107,17 +106,14 @@ namespace Comercio
                 throw;
             }
         }
-
         protected void Cancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Productos.aspx", false);
         }
-
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             ConfirmaEliminacion = true;
         }
-
         protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -125,7 +121,7 @@ namespace Comercio
                 if (chkConfirmaEliminacion.Checked)
                 {
                     ProductoNegocio producto = new ProductoNegocio();
-                    producto.eliminar(int.Parse(Request.QueryString["id"]));
+                    producto.eliminacionLogica(int.Parse(Request.QueryString["id"]));
                     Response.Redirect("Productos.aspx", false);
                 }
             }

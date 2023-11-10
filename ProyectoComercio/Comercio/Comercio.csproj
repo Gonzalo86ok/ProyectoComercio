@@ -68,6 +68,9 @@
     <Content Include="CompraPage.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Formulario.aspx" />
+    <Content Include="FormularioCategoria.aspx" />
+    <Content Include="FormularioFabricante.aspx" />
+    <Content Include="FormularioMedidas.aspx" />
     <Content Include="FormularioStock.aspx" />
     <Content Include="Global.asax" />
     <Content Include="InventarioPage.aspx" />
@@ -98,6 +101,27 @@
     </Compile>
     <Compile Include="Formulario.aspx.designer.cs">
       <DependentUpon>Formulario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioCategoria.aspx.cs">
+      <DependentUpon>FormularioCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioCategoria.aspx.designer.cs">
+      <DependentUpon>FormularioCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioFabricante.aspx.cs">
+      <DependentUpon>FormularioFabricante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioFabricante.aspx.designer.cs">
+      <DependentUpon>FormularioFabricante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioMedidas.aspx.cs">
+      <DependentUpon>FormularioMedidas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioMedidas.aspx.designer.cs">
+      <DependentUpon>FormularioMedidas.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormularioStock.aspx.cs">
       <DependentUpon>FormularioStock.aspx</DependentUpon>

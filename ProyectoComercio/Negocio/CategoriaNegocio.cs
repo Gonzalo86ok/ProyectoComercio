@@ -9,14 +9,18 @@ namespace Negocio
 {
     public class CategoriaNegocio
     {
-        public List<Categoria> listar()
+        public List<Categoria> listar(string id = "")
         {
             List<Categoria> lista = new List<Categoria>();
             AccesoADatos datos = new AccesoADatos();
 
             try
             {
-                datos.setearConsulta("select Id, Tipo from CATEGORIAS");
+                string consulta = "select Id, Tipo from CATEGORIAS";
+                if (id != "")
+                    consulta += " and Id = " + id;
+
+                datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -34,16 +38,67 @@ namespace Negocio
                 throw ex;
             }
         }
-        public void agregar(Categoria nuevaCategoria)
+        public Categoria obtenerCategoria(string id)
+        {
+            Categoria categoria = new Categoria();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta = "select Tipo from CATEGORIAS where Id = @id ";              
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    categoria.Id = int.Parse(id);
+                    categoria.Tipo = (string)datos.Lector["Tipo"];
+                }
+                return categoria;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void agregarCategoria(Categoria nuevaCategoria)
         {
             AccesoADatos datos = new AccesoADatos();
 
             try
             {
-                string consulta = "INSERT INTO CATEGORIAS (Descripcion) VALUES (@Descripcion)";
+                string consulta = "INSERT INTO CATEGORIAS (Tipo) VALUES (@tipo)";
                 datos.setearConsulta(consulta);
 
-                datos.setearParametro("@Descripcion", nuevaCategoria.Tipo);
+                datos.setearParametro("@tipo", nuevaCategoria.Tipo);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void modificarCategoria(Categoria nuevaCategoria)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                string consulta = "update CATEGORIAS set Tipo = @tipo where Id = @id";
+                datos.setearConsulta(consulta);
+
+                datos.setearParametro("@tipo", nuevaCategoria.Tipo);
+                datos.setearParametro("@id", nuevaCategoria.Id);
 
                 datos.ejecutarAccion();
             }
