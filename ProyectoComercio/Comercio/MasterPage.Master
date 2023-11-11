@@ -23,10 +23,9 @@
                         <div class="navbar-nav">
                             <a class="nav-link active" aria-current="page" href="Default.aspx">Informes</a>
                             <a class="nav-link" href="VentaPage.aspx">Venta</a>                           
-                            <a class="nav-link" href="InventarioPage.aspx">Inventario</a>
+                            <a class="nav-link" href="InventarioPage.aspx">Stock</a>
                             <a class="nav-link" href="Productos.aspx">Producto</a>
                             <a class="nav-link" href="UsuarioPage.aspx">Usuario</a>
-                            <a class="nav-link" href="CompraPage.aspx">Compra</a>
                             <a class="nav-link disabled" aria-disabled="true"></a>
                         </div>
                     </div>

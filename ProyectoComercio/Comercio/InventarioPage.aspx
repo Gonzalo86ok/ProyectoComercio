@@ -46,10 +46,7 @@
                     </Columns>
                 </asp:GridView>
             </div>
-
-
-
         </div>
-    </div>
-
+    </div>  
+    
 </asp:Content>

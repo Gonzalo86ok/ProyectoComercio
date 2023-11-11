@@ -43,9 +43,9 @@
                     </div>
 
                     <asp:Button runat="server" ID="btnAgregar"  Text="Agregar Stock" OnClick="btnAgregar_Click" CssClass="btn btn-outline-primary" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-outline-warning" />
                     <asp:Button runat="server" ID="btoEliminar" Text="Eliminar"      OnClick="btoEliminar_Click" CssClass="btn btn-outline-danger" />
                     
-
                 </div>
             </div>
         </div>

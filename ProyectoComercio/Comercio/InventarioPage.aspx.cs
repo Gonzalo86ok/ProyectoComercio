@@ -42,5 +42,6 @@ namespace Comercio
             Response.Redirect("FormularioStock.aspx?Id=" + selectedId);
 
         }
+
     }
 }
