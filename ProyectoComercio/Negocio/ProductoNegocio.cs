@@ -149,6 +149,13 @@ namespace Negocio
                 dato.setearParametro("@Activo", nuevo.Activo);
 
                 dato.ejecutarAccion();
+               
+                // para crear el stock en cero del producto
+                
+                int idProducto = obtenerIdProductoPorCodigo(nuevo.Codigo);
+                StockNegocio stockNegocio = new StockNegocio();
+                stockNegocio.CraarStock(idProducto);
+
             }
             catch (Exception ex)
             {
@@ -179,6 +186,7 @@ namespace Negocio
                 dato.setearParametro("@Activo", nuevo.Activo);
 
                 dato.ejecutarAccion();
+
             }
             catch (Exception ex)
             {
@@ -211,5 +219,34 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
+        public int obtenerIdProductoPorCodigo(string codigo)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "SELECT Id FROM PRODUCTOS WHERE Codigo = @Codigo AND Activo = 1";
+
+                dato.setearConsulta(consulta);
+                dato.setearParametro("@Codigo", codigo);
+                dato.ejecutarLectura();
+
+                if (dato.Lector.Read())
+                {
+                    return (int)dato.Lector["Id"];
+                }
+
+                // Manejar el caso en que no se encontró el producto
+                throw new Exception("No se encontró el producto con el código proporcionado.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+        }
+
     }
 }

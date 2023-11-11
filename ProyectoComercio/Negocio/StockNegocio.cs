@@ -59,11 +59,10 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT s.Id AS StockId, p.Codigo AS ProductoCodigo, p.Nombre AS ProductoNombre, s.Cantidad AS StockCantidad FROM Stock s INNER JOIN Productos p ON s.IdProducto = p.Id WHERE s.Id = @StockId";
-                string consulta2 = "SELECT s.Id AS StockId, p.Codigo AS ProductoCodigo, p.Nombre AS ProductoNombre, m.Tipo AS ProductoMedidaId, s.Cantidad AS StockCantidad FROM Stock s INNER JOIN Productos p ON s.IdProducto = p.Id INNER JOIN MEDIDAS m ON p.IdMedida = m.Id WHERE s.Id = @StockId";
+                string consulta = "SELECT s.Id AS StockId, p.Codigo AS ProductoCodigo, p.Nombre AS ProductoNombre, m.Tipo AS ProductoMedidaId, s.Cantidad AS StockCantidad FROM Stock s INNER JOIN Productos p ON s.IdProducto = p.Id INNER JOIN MEDIDAS m ON p.IdMedida = m.Id WHERE s.Id = @StockId";
 
 
-                datos.setearConsulta(consulta2);
+                datos.setearConsulta(consulta);
                 datos.setearParametro("@StockId", stockId);
                 datos.ejecutarLectura();
 
@@ -141,6 +140,27 @@ namespace Negocio
             }
         }
 
+        public void CraarStock (int idProducto)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "INSERT INTO STOCK (IdProducto, Cantidad, Activo) VALUES (@IdProducto, 0, 1)";
+                dato.setearConsulta (consulta);
+                dato.setearParametro("@IdProducto", idProducto);
+                dato.ejecutarAccion();
+                    
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally 
+            {
+                dato.cerrarConexion();
+            }
+        }
 
     }
 }
