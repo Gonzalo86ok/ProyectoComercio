@@ -13,7 +13,16 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio dato = new UsuarioNegocio();
+            if (!IsPostBack)
+            {
+                List<Usuario> listaUsuario = dato.listar();
 
+                dgvUsuario.DataSource = listaUsuario;
+                dgvUsuario.DataBind();
+
+            }
         }
         protected void btnAgregar_Click1(object sender, EventArgs e)
         {
@@ -37,6 +46,18 @@ namespace Comercio
                 throw;
             }
 
+        }
+        protected void btnModificarUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            // Código del evento aquí
+        }
+        protected void dgvUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Código del evento aquí
         }
 
     }

@@ -18,12 +18,17 @@ namespace Dominio
         public string User { get; set; }
         public string Pass { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public bool Activo { get; set; }
 
         public Usuario(string user, string pass, bool admin)
         {
             User = user;
             Pass = pass;
             TipoUsuario = admin ? TipoUsuario.Admin : TipoUsuario.Empledo;
+        }
+        public Usuario()
+        {
+
         }
 
     }

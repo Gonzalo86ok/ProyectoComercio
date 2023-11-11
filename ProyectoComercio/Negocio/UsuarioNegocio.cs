@@ -9,6 +9,32 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
+        public List<Usuario> listar()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("Select ID,Usuario, TipoUsuario From USUARIOS");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.User = (string)datos.Lector["Usuario"];
+                    aux.TipoUsuario = (int)(datos.Lector["TipoUsuario"]) == 2 ? TipoUsuario.Admin : TipoUsuario.Empledo;
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void agregar(Usuario nuevoUsuario)
         {
             AccesoADatos datos = new AccesoADatos();
