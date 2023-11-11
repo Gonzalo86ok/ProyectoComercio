@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -42,20 +43,54 @@ namespace Comercio
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            decimal cantidad = decimal.Parse(txtAgregaCantidad.Text);
-            StockNegocio negocio = new StockNegocio();
-            negocio.IncrementarCantidadStock(int.Parse(Request.QueryString["Id"]), cantidad);
+            decimal cantidad;
 
-            Response.Redirect("InventarioPage.aspx", false);
+            if (!decimal.TryParse(txtAgregaCantidad.Text, out cantidad) || cantidad < 0 || txtAgregaCantidad.Text.Contains("."))
+            {
+                lblMensaje.Text = "Ingrese una cantidad válida y no negativa, sin puntos.";
+                lblMensaje.Visible = true;
+            }
+            else if (cantidad == 0)
+            {
+                lblMensaje.Text = "Está intentando ingresar un valor incorrecto.";
+                lblMensaje.Visible = true;
+            }
+            else
+            {
+
+                lblMensaje.Text = "Stock modificado con éxito.";
+                StockNegocio negocio = new StockNegocio();
+                negocio.IncrementarCantidadStock(int.Parse(Request.QueryString["Id"]), cantidad);
+                Response.Redirect("InventarioPage.aspx", false);
+            }
+                                        
         }
 
         protected void btoEliminar_Click(object sender, EventArgs e)
         {
-            decimal cantidad = decimal.Parse(txtAgregaCantidad.Text);
-            StockNegocio negocio = new StockNegocio();
-            negocio.DecrementarCantidadStock(int.Parse(Request.QueryString["Id"]), cantidad);
 
-            Response.Redirect("InventarioPage.aspx", false);
+            decimal cantidad;
+
+            if (!decimal.TryParse(txtAgregaCantidad.Text, out cantidad) || cantidad < 0 || txtAgregaCantidad.Text.Contains("."))
+            {
+                lblMensaje.Text = "Ingrese una cantidad válida y no negativa, sin puntos.";
+                lblMensaje.Visible = true;
+            }
+            else if (cantidad == 0)
+            {
+                lblMensaje.Text = "Está intentando ingresar un valor incorrecto.";
+                lblMensaje.Visible = true;
+            }
+            else
+            {
+            
+                lblMensaje.Text = "Stock modificado con éxito.";
+                StockNegocio negocio = new StockNegocio();
+                negocio.DecrementarCantidadStock(int.Parse(Request.QueryString["Id"]), cantidad);            
+                                                
+                Response.Redirect("InventarioPage.aspx", false);
+            }
+
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

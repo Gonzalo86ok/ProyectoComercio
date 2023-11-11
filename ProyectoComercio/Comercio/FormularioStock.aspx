@@ -47,6 +47,7 @@
                     <asp:Button runat="server" ID="btoEliminar" Text="Eliminar"      OnClick="btoEliminar_Click" CssClass="btn btn-outline-danger" />
                     
                 </div>
+                <asp:Label ID="lblMensaje" runat="server" Text="" ></asp:Label>
             </div>
         </div>
     </div>
