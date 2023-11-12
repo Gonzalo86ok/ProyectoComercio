@@ -71,6 +71,7 @@
     <Content Include="FormularioFabricante.aspx" />
     <Content Include="FormularioMedidas.aspx" />
     <Content Include="FormularioStock.aspx" />
+    <Content Include="FormularioUsuario.aspx" />
     <Content Include="Global.asax" />
     <Content Include="InventarioPage.aspx" />
     <Content Include="LoginPage.aspx" />
@@ -121,6 +122,13 @@
     </Compile>
     <Compile Include="FormularioStock.aspx.designer.cs">
       <DependentUpon>FormularioStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioUsuario.aspx.cs">
+      <DependentUpon>FormularioUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioUsuario.aspx.designer.cs">
+      <DependentUpon>FormularioUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -17,7 +17,7 @@ namespace Comercio
             UsuarioNegocio dato = new UsuarioNegocio();
             if (!IsPostBack)
             {
-                List<Usuario> listaUsuario = dato.listar();
+                List<Usuario> listaUsuario = dato.ListarUsuariosActivos();
 
                 dgvUsuario.DataSource = listaUsuario;
                 dgvUsuario.DataBind();
@@ -28,16 +28,11 @@ namespace Comercio
         {
             try
             {
-                Usuario nuevo;
+                Usuario nuevo = new Usuario(txtUsuario.Text, txtContraseña.Text, false, true);
+
                 UsuarioNegocio negocio = new UsuarioNegocio();
-
-                nuevo = new Usuario(txtUsuario.Text, txtContraseña.Text, false);
-
-                nuevo.User = txtUsuario.Text;
-                nuevo.Pass = txtContraseña.Text;
-
-
                 negocio.agregar(nuevo);
+
                 Response.Redirect("UsuarioPage.aspx", false);
             }
             catch (Exception ex)
@@ -49,11 +44,30 @@ namespace Comercio
         }
         protected void btnModificarUsuario_Click(object sender, EventArgs e)
         {
-
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("FormularioUsuario.aspx?Id=" + selectedId);
         }
         protected void btnEliminarUsuario_Click(object sender, EventArgs e)
         {
-            // Código del evento aquí
+            try
+            {
+                if (sender is Button btn)
+                {
+                    string commandArgument = btn.CommandArgument;
+
+                    if (int.TryParse(commandArgument, out int userId))
+                    {
+                        UsuarioNegocio negocio = new UsuarioNegocio();
+                        negocio.eliminacionLogica(userId);
+                        Response.Redirect("UsuarioPage.aspx", false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
         protected void dgvUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {

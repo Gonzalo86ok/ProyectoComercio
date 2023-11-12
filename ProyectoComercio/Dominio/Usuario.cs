@@ -20,11 +20,12 @@ namespace Dominio
         public TipoUsuario TipoUsuario { get; set; }
         public bool Activo { get; set; }
 
-        public Usuario(string user, string pass, bool admin)
+        public Usuario(string user, string pass, bool admin, bool activo)
         {
             User = user;
             Pass = pass;
             TipoUsuario = admin ? TipoUsuario.Admin : TipoUsuario.Empledo;
+            Activo = activo;
         }
         public Usuario()
         {
