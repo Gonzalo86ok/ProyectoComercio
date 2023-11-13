@@ -25,8 +25,8 @@
                         <div class="card-body">
                             <h5 class="card-title text-center">Inicio de Sesión</h5>
                                 <div class="mb-3">
-                                    <label for="inputEmail" class="form-label">Usuario</label>
-                                    <asp:TextBox  type="email" ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <label for="txtUsuario" class="form-label">Usuario</label>
+                                    <asp:TextBox   ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputPassword" class="form-label">Contraseña: </label>

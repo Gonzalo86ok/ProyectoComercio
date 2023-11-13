@@ -2,9 +2,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h3 class="p-1 text-center">Producto</h3>
-
+    <div class="  container p-2 ">
+    <h3 class="p-1 text-center border border-primary-subtle rounded bg-primary bg-opacity-50  p-2">Producto </h3>
+    </div>
     <div class="container">
+        <div class="md-3 p-3 bg-info bg-opacity-10  border border-4 border-primary-subtle rounded-end">
         <ul class="nav nav-tabs" id="myTabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="producto-tab" data-bs-toggle="tab" data-bs-target="#producto" role="tab" aria-controls="producto" aria-selected="true">Producto</a>
@@ -25,6 +27,7 @@
                 <div class="form-container border border-secondary p-3">
                     <div class="pb-4"></div>
                     <div class="table-container pb-4 ">
+
                         <asp:GridView runat="server" ID="dgvProducto" DataKeyNames="Id" OnSelectedIndexChanged="dgvProducto_SelectedIndexChanged" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:TemplateField HeaderText="Código">
@@ -106,98 +109,99 @@
                                     </Columns>
                                 </asp:GridView>
                             </div>
-                             <asp:Button runat="server" ID="agregarCategoria" OnClick="agregarCategoria_Click" Text="Agregar Categoria" CssClass="btn btn-success" />
+                            <asp:Button runat="server" ID="agregarCategoria" OnClick="agregarCategoria_Click" Text="Agregar Categoria" CssClass="btn btn-success" />
                         </div>
                     </div>
                 </div>
                 <div class="pb-4"></div>
                 <!-- Fin de los campos para Categoría -->
             </div>
-    <div class="tab-pane fade" id="medida" role="tabpanel" aria-labelledby="medida-tab">
-        <!-- Contenido de la pestaña "Medida" -->
+            <div class="tab-pane fade" id="medida" role="tabpanel" aria-labelledby="medida-tab">
+                <!-- Contenido de la pestaña "Medida" -->
 
-        <div class="form-container border border-secondary p-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="md-3">
-                        <div class="form-container border border-secondary p-3">
-                            <h5>Agregar una Medida</h5>
+                <div class="form-container border border-secondary p-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-3">
+                                <div class="form-container border border-secondary p-3">
+                                    <h5>Agregar una Medida</h5>
 
-                            <asp:Label runat="server" Text="Medida de producto:" CssClass="form-label" />
-                            <asp:TextBox runat="server" ID="TextBox4" CssClass="form-control" />
-                            <asp:Button runat="server" ID="Button2" Text="Agregar" CssClass="btn btn-secondary ml-2 mt-4 " Style="margin-right: 10px;" />
+                                    <asp:Label runat="server" Text="Medida de producto:" CssClass="form-label" />
+                                    <asp:TextBox runat="server" ID="TextBox4" CssClass="form-control" />
+                                    <asp:Button runat="server" ID="Button2" Text="Agregar" CssClass="btn btn-secondary ml-2 mt-4 " Style="margin-right: 10px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-3">
+                                <h5>Listado Medidas</h5>
+
+                                <asp:GridView runat="server" ID="dgvMedida" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Medida de Producto:">
+                                            <ItemTemplate>
+                                                <asp:Label runat="server" Text='<%# Eval("Tipo") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Acciones">
+                                            <ItemTemplate>
+                                                <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-primary" />
+                                                <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="md-3">
-                        <h5>Listado Medidas</h5>
-
-                        <asp:GridView runat="server" ID="dgvMedida" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Medida de Producto:">
-                                    <ItemTemplate>
-                                        <asp:Label runat="server" Text='<%# Eval("Tipo") %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Acciones">
-                                    <ItemTemplate>
-                                        <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-primary" />
-                                        <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                </div>
+                <div class="pb-4"></div>
+                <!--Fin delos campos para Fabricante -->
             </div>
-        </div>
-        <div class="pb-4"></div>
-        <!--Fin delos campos para Fabricante -->
-    </div>
 
-    <div class="tab-pane fade" id="fabricante" role="tabpanel" aria-labelledby="fabricante-tab">
-        <!-- Contenido de la pestaña "Fabricante" -->
-        <!-- Agrega aquí los campos para Fabricante -->
-        <div class="form-container border border-secondary p-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="md-3">
-                        <div class="form-container border border-secondary p-3">
-                            <h5>Agregar Fabricante / Marca</h5>
+            <div class="tab-pane fade" id="fabricante" role="tabpanel" aria-labelledby="fabricante-tab">
+                <!-- Contenido de la pestaña "Fabricante" -->
+                <!-- Agrega aquí los campos para Fabricante -->
+                <div class="form-container border border-secondary p-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-3">
+                                <div class="form-container border border-secondary p-3">
+                                    <h5>Agregar Fabricante / Marca</h5>
 
-                            <asp:Label runat="server" Text="Nombre Fabricante o Marca:" CssClass="form-label" />
-                            <asp:TextBox runat="server" ID="TextBox2" CssClass="form-control" />
-                            <asp:Button runat="server" ID="Button3" Text="Agregar" CssClass="btn btn-secondary ml-2 mt-4 " Style="margin-right: 10px;" />
+                                    <asp:Label runat="server" Text="Nombre Fabricante o Marca:" CssClass="form-label" />
+                                    <asp:TextBox runat="server" ID="TextBox2" CssClass="form-control" />
+                                    <asp:Button runat="server" ID="Button3" Text="Agregar" CssClass="btn btn-secondary ml-2 mt-4 " Style="margin-right: 10px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-3">
+                                <h5>Listado Fabricante o Marca</h5>
+
+                                <asp:GridView runat="server" ID="dgvFabricante" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Fabricante de Producto:">
+                                            <ItemTemplate>
+                                                <asp:Label runat="server" Text='<%# Eval("Nombre") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Acciones">
+                                            <ItemTemplate>
+                                                <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-primary" />
+                                                <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="md-3">
-                        <h5>Listado Fabricante o Marca</h5>
-
-                        <asp:GridView runat="server" ID="dgvFabricante" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Fabricante de Producto:">
-                                    <ItemTemplate>
-                                        <asp:Label runat="server" Text='<%# Eval("Nombre") %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Acciones">
-                                    <ItemTemplate>
-                                        <asp:Button runat="server" Text="Modificar" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-primary" />
-                                        <asp:Button runat="server" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                </div>
+                <div class="pb-4"></div>
+                <!-- Contenido de la pestaña " Fabricante" -->
             </div>
         </div>
-        <div class="pb-4"></div>
-        <!-- Contenido de la pestaña " Fabricante" -->
-    </div>
     </div>
     </div>
 </asp:Content>

@@ -1,16 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="InventarioPage.aspx.cs" Inherits="Comercio.InventarioPage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="  container p-2 ">
+        <h3 class="p-1 text-center border border-primary-subtle rounded bg-primary bg-opacity-50  p-2 mb-2">Stock De Productos </h3>
+    </div>
     
-    <h3 class="p-1 text-center">Stock De Productos </h3>
     <div class="container">
         <div class="row">
 
             <div class="pb-4"></div>
-            <div class="table-container pb-4 ">
+            <div class="table-container pb-4 border border-primary-subtle p-2 mb-2  rounded bg-primary bg-opacity-50">
+
                 <asp:GridView runat="server" ID="dgvStockItem" DataKeyNames="StockId" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
                     <Columns>
                         <asp:TemplateField HeaderText="Código">
@@ -47,6 +49,6 @@
                 </asp:GridView>
             </div>
         </div>
-    </div>  
-    
+    </div>
+
 </asp:Content>
