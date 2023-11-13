@@ -134,7 +134,7 @@ namespace Negocio
             AccesoADatos dato = new AccesoADatos();
             try
             {
-                  string consulta = "INSERT INTO PRODUCTOS (Codigo, Nombre, Descripcion, IdCategoria, IdFabricante, IdMedida, Precio, Activo) VALUES (@Codigo, @Nombre, @Descripcion, @IdCategoria, @IdFabricante, @IdMedida, @Precio, @Activo)";
+                  string consulta = "INSERT INTO PRODUCTOS (Codigo, Nombre, Descripcion, IdCategoria, IdFabricante, IdMedida, Precio) VALUES (@Codigo, @Nombre, @Descripcion, @IdCategoria, @IdFabricante, @IdMedida, @Precio)";
 
                 dato.setearConsulta(consulta);
 
@@ -145,8 +145,7 @@ namespace Negocio
                 dato.setearParametro("@IdCategoria", nuevo.Categoria.Id);
                 dato.setearParametro("@IdFabricante", nuevo.Fabricante.Id);
                 dato.setearParametro("@IdMedida", nuevo.Medida.Id);
-                dato.setearParametro("@Precio", nuevo.Precio);
-                dato.setearParametro("@Activo", nuevo.Activo);
+                dato.setearParametro("@Precio", nuevo.Precio);              
 
                 dato.ejecutarAccion();
                

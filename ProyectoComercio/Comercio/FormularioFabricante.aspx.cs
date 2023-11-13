@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,67 @@ namespace Comercio
 {
     public partial class FormularioFabricante : System.Web.UI.Page
     {
+        public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+            if (id != "" && !IsPostBack)
+            {
+                FabricanteNegocio categoria = new FabricanteNegocio();
+                Fabricante seleccionado = categoria.obtenerFabricante(id);
 
+                TxtFabricante.Text = seleccionado.Nombre;
+            }
+        }
+        protected void agregarFabricante_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Fabricante nuevo = new Fabricante();
+                FabricanteNegocio categoriaNegocio = new FabricanteNegocio();
+
+                nuevo.Nombre = TxtFabricante.Text;
+
+                if (Request.QueryString["id"] != null)
+                {
+                    nuevo.Id = int.Parse(Request.QueryString["id"]);
+                    categoriaNegocio.modificarFabricante(nuevo);
+                }
+                else
+                    categoriaNegocio.agregarFabricante(nuevo);
+
+                Response.Redirect("Productos.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+        }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Productos.aspx");
+        }
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ConfirmaEliminacion = true;
+        }
+
+        protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkConfirmaEliminacion.Checked)
+                {
+                    FabricanteNegocio fabricante = new FabricanteNegocio();
+                    fabricante.eliminacionLogica(int.Parse(Request.QueryString["id"]));
+                    Response.Redirect("Productos.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
     }
 }

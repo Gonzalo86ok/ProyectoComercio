@@ -60,7 +60,6 @@ namespace Comercio
         {
            
         }
-
         protected void btnAgregarProducto_Click1(object sender, EventArgs e)
         {
             Response.Redirect("Formulario.aspx");
@@ -87,7 +86,7 @@ namespace Comercio
         {
             Button btn = (Button)sender;
             string selectedId = btn.CommandArgument;
-            Response.Redirect("Formulario.aspx?id=" + selectedId);
+            Response.Redirect("FormularioCategoria.aspx?id=" + selectedId);
         }
 
         protected void btnModificarCategoria_Click(object sender, EventArgs e)
@@ -95,6 +94,22 @@ namespace Comercio
             Button btn = (Button)sender;
             string selectedId = btn.CommandArgument;
             Response.Redirect("FormularioCategoria.aspx?id=" + selectedId);
+        }
+        protected void agregarFabricante_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormularioFabricante.aspx");
+        }
+        protected void ModificarFabricante_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("FormularioFabricante.aspx?id=" + selectedId);
+        }
+        protected void EliminarFabricante_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("FormularioFabricante.aspx?id=" + selectedId);
         }
     }
 }

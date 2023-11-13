@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select Id, Nombre from FABRICANTES");
+                datos.setearConsulta("select Id, Nombre, Activo from FABRICANTES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -25,8 +25,10 @@ namespace Negocio
                     Fabricante aux = new Fabricante();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
 
-                    lista.Add(aux);
+                    if (aux.Activo == true)
+                        lista.Add(aux);
                 }
                 return lista;
             }
@@ -35,7 +37,36 @@ namespace Negocio
                 throw ex;
             }
         }
-        public void agregar(Fabricante nuevoFabricante)
+        public Fabricante obtenerFabricante(string id)
+        {
+            Fabricante fabricante = new Fabricante();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta = "select Nombre from FABRICANTES where Id = @id ";
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    fabricante.Id = int.Parse(id);
+                    fabricante.Nombre = (string)datos.Lector["Nombre"];
+                }
+                return fabricante;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void agregarFabricante(Fabricante nuevoFabricante)
         {
             AccesoADatos datos = new AccesoADatos();
 
@@ -43,8 +74,7 @@ namespace Negocio
             {
                 string consulta = "INSERT INTO FABRICANTES (Nombre) VALUES (@Nombre)";
                 datos.setearConsulta(consulta);
-
-                
+              
                 datos.setearParametro("@Nombre", nuevoFabricante.Nombre);
 
                 datos.ejecutarAccion();
@@ -58,6 +88,50 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void modificarFabricante(Fabricante nuevo)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "UPDATE PRODUCTOS SET Nombre = @Nombre where Id = @Id";
 
+                dato.setearConsulta(consulta);
+              
+                dato.setearParametro("@Nombre", nuevo.Nombre);
+                dato.setearParametro("@id", nuevo.Id);
+
+                dato.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+        }
+        public void eliminacionLogica(int id)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "update FABRICANTES set Activo = 0 where Id = @Id";
+
+                dato.setearConsulta(consulta);
+
+                dato.setearParametro("@Id", id);
+
+                dato.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+        }
     }
 }
