@@ -48,9 +48,8 @@ namespace Comercio
                 if (id != "" && !IsPostBack)
                 {
                     ProductoNegocio producto = new ProductoNegocio();
-                    List<Producto> lista = producto.listarActivos(id);
-                    Producto seleccionado = lista[0];
-
+                    Producto seleccionado = producto.obtenerProducto(id);
+                 
                     txtCodigo.Text = seleccionado.Codigo;
                     txtNombre.Text = seleccionado.Nombre;
                     txtDescripcion.Text = seleccionado.Descripcion;

@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,61 @@ namespace Negocio
                         lista.Add(aux);
                 }
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Producto obtenerProducto(string id)
+        {
+            Producto producto = new Producto();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta =
+                   "SELECT " +
+                       "P.Id, " +
+                       "P.Codigo, " +
+                       "P.Nombre, " +
+                       "P.Descripcion, " +
+                       "P.Precio, " +
+                       "P.Activo, " +
+                       "C.Tipo AS Categoria, " +
+                       "F.Nombre AS Fabricante, " +
+                       "M.Tipo AS Medida " +
+                   "FROM PRODUCTOS AS P " +
+                   "INNER JOIN CATEGORIAS AS C ON P.IdCategoria = C.Id " +
+                   "INNER JOIN FABRICANTES AS F ON P.IdFabricante = F.Id " +
+                   "INNER JOIN MEDIDAS AS M ON P.IdMedida = M.Id where P.Id = @id" ;
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    producto.Id = int.Parse(id);
+                    producto.Codigo = (string)datos.Lector["Codigo"];
+                    producto.Nombre = (string)datos.Lector["Nombre"];
+                    producto.Descripcion = (string)datos.Lector["Descripcion"];
+                    producto.Precio = (decimal)datos.Lector["Precio"];                                      
+
+                    producto.Fabricante = new Fabricante();
+                    producto.Fabricante.Nombre = (string)datos.Lector["Fabricante"];
+
+                    producto.Medida = new Medida();
+                    producto.Medida.Tipo = (string)datos.Lector["Medida"];
+
+                    producto.Categoria = new Categoria();
+                    producto.Categoria.Tipo = (string)datos.Lector["Categoria"];                   
+                }
+                return producto;
             }
             catch (Exception ex)
             {

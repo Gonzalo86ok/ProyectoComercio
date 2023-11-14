@@ -98,8 +98,8 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
-                                <asp:Button runat="server" ID="agregarCategoria" OnClick="agregarCategoria_Click" Text="Agregar Categoria" CssClass="btn btn-success" />
                             </div>
+                                <asp:Button runat="server" ID="agregarCategoria" OnClick="agregarCategoria_Click" Text="Agregar Categoria" CssClass="btn btn-success" />
                         </div>
                     </div>
                     <div class="pb-4"></div>
