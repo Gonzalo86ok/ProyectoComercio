@@ -28,17 +28,17 @@ namespace Comercio
             try
             {
                 Fabricante nuevo = new Fabricante();
-                FabricanteNegocio categoriaNegocio = new FabricanteNegocio();
+                FabricanteNegocio fabricanteNegocio = new FabricanteNegocio();
 
                 nuevo.Nombre = TxtFabricante.Text;
 
                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
-                    categoriaNegocio.modificarFabricante(nuevo);
+                    fabricanteNegocio.modificarFabricante(nuevo);
                 }
                 else
-                    categoriaNegocio.agregarFabricante(nuevo);
+                    fabricanteNegocio.agregarFabricante(nuevo);
 
                 Response.Redirect("Productos.aspx", false);
             }

@@ -93,7 +93,7 @@ namespace Negocio
             AccesoADatos dato = new AccesoADatos();
             try
             {
-                string consulta = "UPDATE PRODUCTOS SET Nombre = @Nombre where Id = @Id";
+                string consulta = "UPDATE FABRICANTES SET Nombre = @Nombre where Id = @Id";
 
                 dato.setearConsulta(consulta);
               

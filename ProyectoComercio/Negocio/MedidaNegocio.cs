@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select Id, Tipo from MEDIDAS");
+                datos.setearConsulta("select Id, Tipo, Activo from MEDIDAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -24,8 +24,10 @@ namespace Negocio
                     Medida aux = new Medida();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Tipo = (string)datos.Lector["Tipo"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
 
-                    lista.Add(aux);
+                    if (aux.Activo == true)
+                        lista.Add(aux);
                 }
                 return lista;
             }
@@ -34,7 +36,36 @@ namespace Negocio
                 throw ex;
             }
         }
-        public void agregar(Medida nuevaMedida)
+        public Medida obtenerMedida(string id)
+        {
+            Medida medida = new Medida();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta = "select Tipo from MEDIDAS where Id = @id ";
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    medida.Id = int.Parse(id);
+                    medida.Tipo = (string)datos.Lector["Tipo"];
+                }
+                return medida;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void agregarMedida(Medida nuevaMedida)
         {
             AccesoADatos datos = new AccesoADatos();
 
@@ -42,8 +73,7 @@ namespace Negocio
             {
                 string consulta = "INSERT INTO MEDIDAS (Tipo) VALUES (@Tipo)";
                 datos.setearConsulta(consulta);
-
-                // Usar parámetros para evitar la inyección de SQL y mejorar la seguridad
+               
                 datos.setearParametro("@Tipo", nuevaMedida.Tipo);
 
                 datos.ejecutarAccion();
@@ -55,6 +85,50 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+        public void modificarMedida(Medida nueva)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                string consulta = "update MEDIDAS set Tipo = @tipo where Id = @id";
+                datos.setearConsulta(consulta);
+
+                datos.setearParametro("@tipo", nueva.Tipo);
+                datos.setearParametro("@id", nueva.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void eliminacionLogica(int id)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "update MEDIDAS set Activo = 0 where Id = @Id";
+
+                dato.setearConsulta(consulta);
+
+                dato.setearParametro("@Id", id);
+
+                dato.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
             }
         }
 

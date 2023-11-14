@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "select Id, Tipo from CATEGORIAS";
+                string consulta = "select Id, Tipo, Activo from CATEGORIAS";
                 if (id != "")
                     consulta += " and Id = " + id;
 
@@ -28,8 +28,10 @@ namespace Negocio
                     Categoria aux = new Categoria();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Tipo = (string)datos.Lector["Tipo"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
 
-                    lista.Add(aux);
+                    if (aux.Activo == true)
+                        lista.Add(aux);
                 }
                 return lista;
             }
@@ -109,6 +111,28 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+        public void eliminacionLogica(int id)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "update CATEGORIAS set Activo = 0 where Id = @Id";
+
+                dato.setearConsulta(consulta);
+
+                dato.setearParametro("@Id", id);
+
+                dato.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
             }
         }
     }

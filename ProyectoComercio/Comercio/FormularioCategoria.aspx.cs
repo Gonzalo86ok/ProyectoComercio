@@ -63,8 +63,8 @@ namespace Comercio
             {
                 if (chkConfirmaEliminacion.Checked)
                 {
-                    ProductoNegocio producto = new ProductoNegocio();
-                    producto.eliminacionLogica(int.Parse(Request.QueryString["id"]));
+                    CategoriaNegocio categoria = new CategoriaNegocio();
+                    categoria.eliminacionLogica(int.Parse(Request.QueryString["id"]));
                     Response.Redirect("Productos.aspx", false);
                 }
             }

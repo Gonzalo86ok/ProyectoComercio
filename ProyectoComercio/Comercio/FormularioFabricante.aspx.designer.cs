@@ -42,7 +42,7 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control btnEliminar.
+        /// Control bGuido de juanchotnEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

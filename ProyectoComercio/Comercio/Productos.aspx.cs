@@ -111,5 +111,24 @@ namespace Comercio
             string selectedId = btn.CommandArgument;
             Response.Redirect("FormularioFabricante.aspx?id=" + selectedId);
         }
+
+        protected void btnAgregarMedida_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormularioMedidas.aspx");
+        }
+
+        protected void modificarMedida_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("FormularioMedidas.aspx?id=" + selectedId);
+        }
+
+        protected void eliminarMedida_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string selectedId = btn.CommandArgument;
+            Response.Redirect("FormularioMedidas.aspx?id=" + selectedId);
+        }
     }
 }
