@@ -21,7 +21,7 @@
                             <asp:TextBox runat="server" ID="txtCodigoProducto" CssClass="form-control" />
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group ">
                             <asp:Label runat="server" Text="Nombre del Producto:" CssClass="form-label" />
                             <asp:TextBox runat="server" ID="txtNombreProducto" CssClass="form-control" />
                         </div>
@@ -33,7 +33,7 @@
 
                         <div class="form-group">
                             <asp:Label runat="server" Text="Cantidad en Stock:" CssClass="form-label" />
-                            <asp:TextBox runat="server" ID="txtCantidadStock" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="txtCantidadStock" CssClass="form-control " />
                         </div>
 
                     </div>
@@ -43,17 +43,30 @@
                     <div class="md-3 p-3 bg-info bg-opacity-10 border border-4 border-primary-subtle  ">
                         <div class="form-group">
                             <asp:Label runat="server" Text="Cantidad:" CssClass="form-label" />
+                            <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
                             <asp:TextBox runat="server" ID="txtAgregaCantidad" CssClass="form-control" />
                         </div>
-
-                        <asp:Button runat="server" ID="btnAgregar" Text="Agregar Stock" OnClick="btnAgregar_Click" CssClass="btn btn-outline-primary" />
-                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-outline-warning" />
-                        <asp:Button runat="server" ID="btoEliminar" Text="Eliminar" OnClick="btoEliminar_Click" CssClass="btn btn-outline-danger" />
-
+                        <div class=" p-2">
+                            <asp:Button runat="server" ID="btnAgregar" Text=" + " OnClick="btnAgregar_Click" CssClass="btn btn-outline-primary" />
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-outline-warning" />
+                            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-outline-success" />
+                            <asp:Button runat="server" ID="btoEliminar" Text=" - " OnClick="btoEliminar_Click" CssClass="btn btn-outline-danger" />
+                        </div>
                     </div>
-                    <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+                    <div class=" p-1"></div>
+
+                    <div class="md-3 p-3 bg-info bg-opacity-10 border border-4 border-primary-subtle  ">
+                        <div class="form-group">
+                            <asp:Label ID="Label1" runat="server" Text="Motivo: "></asp:Label>
+                            <asp:Label ID="lbMotivo" runat="server" Text=""></asp:Label>
+                            <asp:TextBox ID="txtMotivo" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+
+                        </div>
+                        <asp:Label ID="lbAceptarCambio" runat="server" Text=""></asp:Label>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </asp:Content>

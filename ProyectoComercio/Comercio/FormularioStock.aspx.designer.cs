@@ -51,6 +51,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.TextBox txtCantidadStock;
 
         /// <summary>
+        /// lblMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
+
+        /// <summary>
         /// txtAgregaCantidad control.
         /// </summary>
         /// <remarks>
@@ -78,6 +87,15 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
+        /// btnAceptar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
+
+        /// <summary>
         /// btoEliminar control.
         /// </summary>
         /// <remarks>
@@ -87,12 +105,39 @@ namespace Comercio
         protected global::System.Web.UI.WebControls.Button btoEliminar;
 
         /// <summary>
-        /// lblMensaje control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// lbMotivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMotivo;
+
+        /// <summary>
+        /// txtMotivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMotivo;
+
+        /// <summary>
+        /// lbAceptarCambio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAceptarCambio;
     }
 }
