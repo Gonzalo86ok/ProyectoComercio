@@ -21,6 +21,7 @@ namespace Comercio
                 Medida seleccionado = medida.obtenerMedida(id);
 
                 TxtMedida.Text = seleccionado.Tipo;
+                btnAgregarMedida.Text = "Modificar";
             }
         }
         protected void btnAgregarMedida_Click(object sender, EventArgs e)

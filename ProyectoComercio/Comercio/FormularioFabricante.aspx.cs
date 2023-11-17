@@ -21,6 +21,7 @@ namespace Comercio
                 Fabricante seleccionado = categoria.obtenerFabricante(id);
 
                 TxtFabricante.Text = seleccionado.Nombre;
+                btnAgregarFabricante.Text = "Modificar";
             }
         }
         protected void agregarFabricante_Click(object sender, EventArgs e)

@@ -21,6 +21,7 @@ namespace Comercio
                 Categoria seleccionado = categoria.obtenerCategoria(id);
 
                 TxtCategoria.Text = seleccionado.Tipo;
+                btnAgregar.Text = "Modificar";
             }
         }
         protected void btnCancelar_Click(object sender, EventArgs e)

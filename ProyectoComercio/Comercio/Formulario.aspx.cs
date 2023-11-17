@@ -58,6 +58,8 @@ namespace Comercio
                     ddlFabricante.SelectedValue = seleccionado.Fabricante.Id.ToString();
                     ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
                     ddlMedida.SelectedValue = seleccionado.Medida.Id.ToString();
+
+                    btnAgregarProducto.Text = "Modificar";
                 }
             }
             catch (Exception ex)
