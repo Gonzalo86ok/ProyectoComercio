@@ -30,24 +30,23 @@ namespace Comercio
             {
                 try
                 {
-                    List<Categoria> listaCategoria = dato.listar();
-                    List<Medida> listaMedidas = medidaNegocio.listar();
-                    List<Producto> listaProductos = productoNegocio.listarActivos();
-                    List<Fabricante> listaFabricante = fabricanteNegocio.listar();
 
+                    List<Producto> listaProductos = productoNegocio.listarActivos();
+                    Session.Add("listaProductos", listaProductos);
+                    dgvProducto.DataSource = Session["listaProductos"];
+                    dgvProducto.DataBind();
+
+                    List<Categoria> listaCategoria = dato.listar();
                     dgvCategoria.DataSource = listaCategoria;
                     dgvCategoria.DataBind();
 
+                    List<Medida> listaMedidas = medidaNegocio.listar();
                     dgvMedida.DataSource = listaMedidas;
                     dgvMedida.DataBind();
 
+                    List<Fabricante> listaFabricante = fabricanteNegocio.listar();
                     dgvFabricante.DataSource = listaFabricante;
                     dgvFabricante.DataBind();
-
-
-                    dgvProducto.DataSource = listaProductos;
-                    dgvProducto.DataBind();
-
                 }
                 catch (Exception ex)
                 {
@@ -129,6 +128,14 @@ namespace Comercio
             Button btn = (Button)sender;
             string selectedId = btn.CommandArgument;
             Response.Redirect("FormularioMedidas.aspx?id=" + selectedId);
+        }
+
+        protected void filtro_TextChanged(object sender, EventArgs e)
+        {
+            List<Producto> lista = (List<Producto>)Session["listaProductos"];
+            List<Producto> listaFiltrar = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvProducto.DataSource = listaFiltrar;
+            dgvProducto.DataBind();
         }
     }
 }

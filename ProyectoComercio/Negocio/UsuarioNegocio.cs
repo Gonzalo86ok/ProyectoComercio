@@ -77,11 +77,9 @@ namespace Negocio
                 datos.setearParametro("@usuario", nuevo.User);
                 datos.setearParametro("@contraseña", nuevo.Pass);
                 return datos.ejecutarAccionScalar();
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -92,7 +90,6 @@ namespace Negocio
         public void agregar(Usuario nuevoUsuario)
         {
             AccesoADatos datos = new AccesoADatos();
-
             try
             {
                 string consulta = "INSERT INTO USUARIOS (Usuario, Contraseña, TipoUsuario,Activo) VALUES (@user, @pass, @tipoUsuario,@activo)";
@@ -114,13 +111,11 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public void modificarUsuario(Usuario nuevo)
         {
             AccesoADatos datos = new AccesoADatos();
             try
             {
-
                 string consulta = "UPDATE USUARIOS SET Usuario = @nuevoUser, Contraseña = @NuevaPass WHERE ID = @Id";
                 datos.setearConsulta(consulta);
 
@@ -147,7 +142,6 @@ namespace Negocio
                 string consulta = "update USUARIOS set Activo = 0 where ID = @Id";
 
                 dato.setearConsulta(consulta);
-
                 dato.setearParametro("@Id", Id);
 
                 dato.ejecutarAccion();

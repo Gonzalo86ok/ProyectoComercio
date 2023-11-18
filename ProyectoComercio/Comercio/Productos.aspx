@@ -26,6 +26,14 @@
                     <div class="form-container border border-secondary p-3">
                         <div class="pb-4"></div>
                         <div class="table-container pb-4 text-center">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="md-3">
+                                        <asp:Label Text="Filtrar" runat="server" />
+                                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
+                                    </div>
+                                </div>
+                            </div>
                             <h5>Listado Productos</h5>
                             <asp:GridView runat="server" ID="dgvProducto" DataKeyNames="Id" OnSelectedIndexChanged="dgvProducto_SelectedIndexChanged" CssClass="table table-striped table-bordered table-hover table-primary" AutoGenerateColumns="false">
                                 <Columns>
