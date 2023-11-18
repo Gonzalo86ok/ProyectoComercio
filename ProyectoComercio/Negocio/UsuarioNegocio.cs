@@ -67,6 +67,28 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public int insertarNuevo(Usuario nuevo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearProcedimiento("insertarNuevo");
+                datos.setearParametro("@usuario", nuevo.User);
+                datos.setearParametro("@contraseña", nuevo.Pass);
+                return datos.ejecutarAccionScalar();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void agregar(Usuario nuevoUsuario)
         {
             AccesoADatos datos = new AccesoADatos();
@@ -137,6 +159,35 @@ namespace Negocio
             finally
             {
                 dato.cerrarConexion();
+            }
+        }
+        public bool Login(Usuario usuario)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+
+                datos.setearConsulta("Select ID, Usuario, Contraseña, TipoUsuario From USUARIOS where Usuario = @user and Contraseña = @pass");
+                datos.setearParametro("@user", usuario.User);
+                datos.setearParametro("@pass", usuario.Pass);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    usuario.Id = (int)datos.Lector["ID"];
+
+                    usuario.TipoUsuario = (int)(datos.Lector["TipoUsuario"]) == 2 ? TipoUsuario.Admin : TipoUsuario.Empledo;
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

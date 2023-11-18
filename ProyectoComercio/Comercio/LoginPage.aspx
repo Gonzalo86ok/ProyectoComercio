@@ -35,8 +35,9 @@
                                 <div class="mb-3">                                    
                                          <label class="form-check-label" for="gridCheck1">¿Te olvidaste tu contraseña?</label>
                                 </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Ingresar</button>
+                             <div class="text-center">
+                                    <asp:Button runat="server" ID="btnIngreso" OnClick="btnIngresar_Click1" Text="Ingresar" CssClass="btn btn-success" />
+                                <asp:Button ID="btnVolver" runat="server" Text="Pagina de inicio" OnClick="btnVolver_Click1" CssClass="btn btn-success"/>
                             </div>
                                 
                         </div>
