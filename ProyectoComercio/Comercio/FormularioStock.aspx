@@ -10,11 +10,11 @@
     </div>
 
     <div class="  container ">
-        <div class="container border border-4 border-primary-subtle border-secondary  p-3">
+        <div class="container border border-2 border-primary-subtle border-secondary p-3 rounded-4">
             <div class="row">
 
                 <div class="col-md-6 ">
-                    <div class="md-3 p-3 bg-info bg-opacity-10  border border-4 border-primary-subtle ">
+                    <div class="md-3 p-3 bg-primary bg-opacity-10 border border-4 border-primary-subtle rounded-4">
                         <!-- Controles para la información del Producto -->
                         <div class="form-group">
                             <asp:Label runat="server" Text="Código del Producto:" CssClass="form-label" />
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col-md-6  ">
-                    <div class="md-3 p-3 bg-info bg-opacity-10 border border-4 border-primary-subtle  ">
+                    <div class="md-3 p-3 bg-primary bg-opacity-10 border border-4 border-primary-subtle rounded-4">
                         <div class="form-group">
                             <asp:Label runat="server" Text="Cantidad:" CssClass="form-label" />
                             <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
@@ -55,7 +55,7 @@
                     </div>
                     <div class=" p-1"></div>
 
-                    <div class="md-3 p-3 bg-info bg-opacity-10 border border-4 border-primary-subtle  ">
+                    <div class="md-3 p-3 bg-primary bg-opacity-10 border border-4 border-primary-subtle  rounded-4">
                         <div class="form-group">
                             <asp:Label ID="Label1" runat="server" Text="Motivo: "></asp:Label>
                             <asp:Label ID="lbMotivo" runat="server" Text=""></asp:Label>
@@ -67,6 +67,5 @@
                 </div>
             </div>
         </div>
-
-    </div>
+      </div>
 </asp:Content>
