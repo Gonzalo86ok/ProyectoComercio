@@ -58,9 +58,9 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-
-       
-
     </form>
+     <footer class="container-fluid bg-primary py-3 mt-4">
+        <p class="text-center">2023 - Todos los derechos reservados</p>
+    </footer>
 </body>
 </html>

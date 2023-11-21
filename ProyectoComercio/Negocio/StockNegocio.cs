@@ -89,6 +89,38 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public decimal ObtenerCantidadStock(int stockId)
+        {
+            decimal cantidad = 0;
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                string consulta = "SELECT s.Cantidad AS StockCantidad FROM Stock s WHERE s.IdProducto = @StockId";
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@StockId", stockId);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    cantidad = (decimal)datos.Lector["StockCantidad"];
+                }
+
+                datos.cerrarConexion();
+
+                return cantidad;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void IncrementarCantidadStock(int stockId, decimal cantidadAIncrementar)
         {
             AccesoADatos datos = new AccesoADatos();
