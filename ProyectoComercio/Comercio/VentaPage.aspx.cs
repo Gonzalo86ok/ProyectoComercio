@@ -185,6 +185,9 @@ namespace Comercio
             }
             else
             {
+                // Esta funcion es para actualizar el Stock de la venta
+                ActualizarStock((List<Venta>)Session["listaSesionVenta"]);
+
                 limpiarVentanaVenta();
                 lbMensaje.Text = "Venta realizada con exito...";
                 lbMensaje.ForeColor = System.Drawing.Color.Green;
@@ -199,6 +202,15 @@ namespace Comercio
             lbMensaje.Text = "Venta Cancelada...";
             lbMensaje.ForeColor = System.Drawing.Color.Yellow;
 
+        }
+        protected void ActualizarStock(List<Venta> listaVenta)
+        {
+            StockNegocio negocio = new StockNegocio();
+
+            foreach (Venta venta in listaVenta)
+            {
+                negocio.DecrementarCantidadStock(venta.Producto.Id, venta.Cantidad);
+            }
         }
         protected void limpiarVentanaVenta()
         {
