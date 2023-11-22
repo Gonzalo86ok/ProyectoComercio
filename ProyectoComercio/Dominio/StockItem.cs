@@ -13,5 +13,6 @@ namespace Dominio
         public string ProductoNombre { get; set; }
         public string ProductoMedidaId { get; set; }
         public decimal StockCantidad { get; set; }
+        public bool Activo { get; set; }
     }
 }

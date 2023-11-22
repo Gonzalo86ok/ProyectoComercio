@@ -78,7 +78,11 @@ namespace Comercio
                 nuevo.Codigo = txtCodigo.Text;
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+                string precioText = txtPrecio.Text.Replace('.', ',');
+                if (decimal.TryParse(precioText, out decimal precio))
+                {
+                    nuevo.Precio = precio;
+                }
 
                 nuevo.Categoria = new Categoria();
                 nuevo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
@@ -122,8 +126,21 @@ namespace Comercio
                 if (chkConfirmaEliminacion.Checked)
                 {
                     ProductoNegocio producto = new ProductoNegocio();
-                    producto.eliminacionLogica(int.Parse(Request.QueryString["id"]));
-                    Response.Redirect("Productos.aspx", false);
+                    StockNegocio stockNegocio = new StockNegocio();
+                    int productoId = int.Parse(Request.QueryString["id"]);
+                    decimal cantidadDeStock = stockNegocio.ObtenerCantidadStock(productoId);
+
+                    if (cantidadDeStock == 0)
+                    {
+                        stockNegocio.EliminarStock(productoId);
+                        producto.eliminacionLogica(productoId);
+                        Response.Redirect("Productos.aspx", false);
+                    }
+                    else
+                    {
+                        mensaje.Visible = true;
+                        lblMensaje.Text = "No se puede eliminar el producto porque hay stock asociado. Elimina el stock primero.";
+                    }
                 }
             }
             catch (Exception ex)

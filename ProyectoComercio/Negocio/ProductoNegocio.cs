@@ -183,64 +183,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public List<Producto> listar2()
-        {
-            List<Producto> lista = new List<Producto>();
-            AccesoADatos datos = new AccesoADatos();
-
-            try
-            {
-                string consulta = "SELECT p.Id, p.Codigo, p.Nombre, p.Descripcion, p.IdMarca, p.IdCategoria, p.IdMedida, p.Precio, p.Activo, " +
-                                 "m.Nombre AS NombreMarca, c.Tipo AS TipoCategoria, me.Tipo AS TipoMedida " +
-                                 "FROM PRODUCTOS AS p " +
-                                 "INNER JOIN MARCAS AS m ON p.IdMarca = m.Id " +
-                                 "INNER JOIN CATEGORIAS AS c ON p.IdCategoria = c.Id " +
-                                 "INNER JOIN MEDIDAS AS me ON p.IdMedida = me.Id";
-
-                datos.setearConsulta(consulta);
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
-                {
-                    // Create a new Producto object and populate its properties.
-                    Producto aux = new Producto();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Codigo = (string)datos.Lector["Codigo"];
-                    aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
-
-                    // Create a Fabricante object and populate its properties.
-                    aux.Fabricante = new Fabricante();
-                    aux.Fabricante.Id = (int)datos.Lector["IdMarca"];
-                    aux.Fabricante.Nombre = (string)datos.Lector["NombreMarca"];
-
-                    // Create a Medida object and populate its properties.
-                    aux.Medida = new Medida();
-                    aux.Medida.Id = (int)datos.Lector["IdMedida"];
-                    aux.Medida.Tipo = (string)datos.Lector["TipoMedida"];
-
-                    // Create a Categoria object and populate its properties.
-                    aux.Categoria = new Categoria();
-                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
-                    aux.Categoria.Tipo = (string)datos.Lector["TipoCategoria"];
-
-                    aux.Precio = (decimal)datos.Lector["Precio"];
-                    aux.Activo = (bool)datos.Lector["Activo"];
-
-                    // Add the populated Producto object to the list.
-                    lista.Add(aux);
-                }
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex; // You may want to handle the exception more gracefully.
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
         public void agregar(Producto nuevo)
         {
             AccesoADatos dato = new AccesoADatos();
@@ -250,7 +192,6 @@ namespace Negocio
 
                 dato.setearConsulta(consulta);
 
-
                 dato.setearParametro("@Codigo", nuevo.Codigo);
                 dato.setearParametro("@Nombre", nuevo.Nombre);
                 dato.setearParametro("@Descripcion", nuevo.Descripcion);           
@@ -259,14 +200,11 @@ namespace Negocio
                 dato.setearParametro("@IdMedida", nuevo.Medida.Id);
                 dato.setearParametro("@Precio", nuevo.Precio);              
 
-                dato.ejecutarAccion();
-               
-                // para crear el stock en cero del producto
+                dato.ejecutarAccion();                              
                 
                 int idProducto = obtenerIdProductoPorCodigo(nuevo.Codigo);
                 StockNegocio stockNegocio = new StockNegocio();
-                stockNegocio.CraarStock(idProducto);
-
+                stockNegocio.CrearStock(idProducto);
             }
             catch (Exception ex)
             {
@@ -297,7 +235,6 @@ namespace Negocio
                 dato.setearParametro("@Activo", nuevo.Activo);
 
                 dato.ejecutarAccion();
-
             }
             catch (Exception ex)
             {
@@ -316,9 +253,7 @@ namespace Negocio
                 string consulta = "update PRODUCTOS set Activo = 0 where Id = @Id";
 
                 dato.setearConsulta(consulta);
-
                 dato.setearParametro("@Id", id);
-
                 dato.ejecutarAccion();
             }
             catch (Exception ex)
@@ -345,7 +280,6 @@ namespace Negocio
                 {
                     return (int)dato.Lector["Id"];
                 }
-
                 // Manejar el caso en que no se encontró el producto
                 throw new Exception("No se encontró el producto con el código proporcionado.");
             }
@@ -358,6 +292,5 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
-
     }
 }

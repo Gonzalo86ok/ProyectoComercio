@@ -50,9 +50,11 @@
                             <div class="md-3">
                                 <asp:Button Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" />
                             </div>
-
+                            <div id="mensaje" runat="server" class="alert alert-danger" visible="false">
+                                <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+                            </div>
                             <%if (ConfirmaEliminacion)
-                            {%>
+                                {%>
                             <div class="md-3">
                                 <asp:CheckBox Text="Confirmar Eliminación" ID="chkConfirmaEliminacion" runat="server" />
                                 <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" OnClick="btnConfirmaEliminar_Click" CssClass="btn btn-outline-danger" runat="server" />
@@ -63,4 +65,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </asp:Content>

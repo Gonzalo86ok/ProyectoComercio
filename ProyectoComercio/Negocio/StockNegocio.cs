@@ -16,11 +16,10 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT s.Id AS StockId, p.Codigo AS ProductoCodigo, p.Nombre AS ProductoNombre, m.Tipo AS ProductoMedidaId, s.Cantidad AS StockCantidad " +
+                string consulta = "SELECT s.Id AS StockId, p.Codigo AS ProductoCodigo, p.Nombre AS ProductoNombre, m.Tipo AS ProductoMedidaId, s.Cantidad AS StockCantidad, s.Activo " +
                                       "FROM Stock s " +
                                       "INNER JOIN PRODUCTOS p ON s.IdProducto = p.Id " +
                                       "INNER JOIN MEDIDAS m ON p.IdMedida = m.Id";
-
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -33,12 +32,12 @@ namespace Negocio
                     aux.ProductoCodigo = (string)datos.Lector["ProductoCodigo"];
                     aux.ProductoMedidaId = (string)datos.Lector["ProductoMedidaId"];
                     aux.StockCantidad = (decimal)datos.Lector["StockCantidad"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
 
-                    lista.Add(aux);
+                    if (aux.Activo == true)
+                        lista.Add(aux);
                 }
-
                 datos.cerrarConexion();
-
                 return lista;
             }
             catch (Exception ex)
@@ -49,18 +48,14 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-        }
-
-   
+        } 
         public StockItem ObtenerStockItemPorId(int stockId)
         {
             StockItem stockItem = null;
             AccesoADatos datos = new AccesoADatos();
-
             try
             {
                 string consulta = "SELECT s.Id AS StockId, p.Codigo AS ProductoCodigo, p.Nombre AS ProductoNombre, m.Tipo AS ProductoMedidaId, s.Cantidad AS StockCantidad FROM Stock s INNER JOIN Productos p ON s.IdProducto = p.Id INNER JOIN MEDIDAS m ON p.IdMedida = m.Id WHERE s.Id = @StockId";
-
 
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@StockId", stockId);
@@ -120,7 +115,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public void IncrementarCantidadStock(int stockId, decimal cantidadAIncrementar)
         {
             AccesoADatos datos = new AccesoADatos();
@@ -171,8 +165,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
-        public void CraarStock (int idProducto)
+        public void CrearStock (int idProducto)
         {
             AccesoADatos dato = new AccesoADatos();
             try
@@ -180,12 +173,10 @@ namespace Negocio
                 string consulta = "INSERT INTO STOCK (IdProducto, Cantidad, Activo) VALUES (@IdProducto, 0, 1)";
                 dato.setearConsulta (consulta);
                 dato.setearParametro("@IdProducto", idProducto);
-                dato.ejecutarAccion();
-                    
+                dato.ejecutarAccion();                  
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally 
@@ -193,6 +184,24 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
-
+        public void EliminarStock(int idProducto)
+        {
+            AccesoADatos dato = new AccesoADatos();
+            try
+            {
+                string consulta = "update Stock set Activo = 0 where IdProducto = @IdProducto";
+                dato.setearConsulta(consulta);
+                dato.setearParametro("@IdProducto", idProducto);
+                dato.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dato.cerrarConexion();
+            }
+        }
     }
 }

@@ -43,15 +43,8 @@ namespace Comercio
                 txtSumaVentas.CssClass = "texto-grande";
                 txtSumaVentas.Text = sumaVentasFormateada;
                 txtSumaVentas.Enabled = false;
-
-
             }
-
-
-
-
         }
-
         protected void BtnAgregar_Click(object sender, EventArgs e)
         {
             int idProducto = int.Parse(((Button)sender).CommandArgument);
