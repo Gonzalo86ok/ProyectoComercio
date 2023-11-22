@@ -150,6 +150,8 @@ namespace Comercio
                 StockHistorialNegocio stockHistorialNegocio = new StockHistorialNegocio();
                 StockHistorial stockHistorial = new StockHistorial();
 
+                Usuario usuario = Session["usuario"] as Usuario;// obtengo el usuario de la sesion.
+
                 bandera = (bool)ViewState["Bandera"];
                 if (bandera)
                 {
@@ -161,7 +163,7 @@ namespace Comercio
                     stockHistorial.FechaHoraRegistro = DateTime.Now;
                     stockHistorial.Operacion = "Ingreso";
                     stockHistorial.Comentario = null; // No se proporciona comentario
-                    stockHistorial.IdUsuario = 1;// remplazar con el usuario cundo se cargue en session;
+                    stockHistorial.IdUsuario = usuario.Id;// remplazar con el usuario cundo se cargue en session;
 
                     stockHistorialNegocio.InsertarStockHistorial(stockHistorial);
                 }
@@ -175,7 +177,7 @@ namespace Comercio
                     stockHistorial.FechaHoraRegistro = DateTime.Now;
                     stockHistorial.Operacion = "Egreso";
                     stockHistorial.Comentario = txtMotivo.Text; // Si se proporciona comentario
-                    stockHistorial.IdUsuario = 1;// remplazar con el usuario cundo se cargue en session;
+                    stockHistorial.IdUsuario = usuario.Id;// remplazar con el usuario cundo se cargue en session;
 
                     stockHistorialNegocio.InsertarStockHistorial(stockHistorial);
                 }
