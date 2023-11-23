@@ -180,6 +180,18 @@ namespace Comercio
             {
                 // Esta funcion es para actualizar el Stock de la venta
                 ActualizarStock((List<Venta>)Session["listaSesionVenta"]);
+                
+                // Aquí guardamos la venta en el historial
+                VentasHistorialNegocio dato = new VentasHistorialNegocio();
+                
+                Usuario usuario = Session["usuario"] as Usuario;
+               
+                // guarda la ventaHistorial y devuelve IdVentaHistorial
+                int idVentaHistorial = dato.AgregarVentaHistorial(usuario.Id);
+
+                // guarda el detalle de la venta y el idVenta al que corresponde
+                VentaHistorialDetalleNegocio detalle = new VentaHistorialDetalleNegocio();
+                detalle.GuardarVentaHistorialDetalle((List<Venta>)Session["listaSesionVenta"], idVentaHistorial);
 
                 limpiarVentanaVenta();
                 lbMensaje.Text = "Venta realizada con exito...";

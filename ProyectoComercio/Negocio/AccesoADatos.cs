@@ -81,5 +81,27 @@ namespace Negocio
                 throw ex;
             }
         }
+        public object EjecutarScalar(string consulta)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection("Server=.\\SQLEXPRESS;Database=COMERCIOPANADERIA;Integrated Security=True;"))
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.CommandText = consulta;
+                        command.Connection = connection;
+
+                        connection.Open();
+                        return command.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
