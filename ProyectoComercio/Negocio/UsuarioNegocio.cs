@@ -184,5 +184,29 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public bool UsuarioExiste(string usuario)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearProcedimiento("VerificarUsuarioExistente");
+                datos.setearParametro("@usuario", usuario);
+
+               
+                int resultado = Convert.ToInt32(datos.ejecutarAccionScalar());
+
+                
+                return resultado > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

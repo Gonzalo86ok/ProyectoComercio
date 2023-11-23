@@ -34,17 +34,36 @@ namespace Comercio
         {
             try
             {
-                Usuario nuevo = new Usuario(txtUsuario.Text, txtContraseña.Text, false, true);
+                string usuario = txtUsuario.Text;
+                string contraseña = txtContraseña.Text;
 
+
+                if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
+                {
+
+                    lblMensaje.Text = "El usuario y la contraseña son obligatorios.";
+                    return;
+                }
+
+                Usuario user = new Usuario();
                 UsuarioNegocio negocio = new UsuarioNegocio();
-                negocio.agregar(nuevo);
+                if (negocio.UsuarioExiste(usuario))
+                {
+                    lblMensaje.Text = "El usuario ya existe. Por favor, elija otro.";
+                    return;
+                }
+
+                user.User = usuario;
+
+                user.Pass = contraseña;
+                int id = negocio.insertarNuevo(user);
 
                 Response.Redirect("UsuarioPage.aspx", false);
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+
+                lblMensaje.Text = "El usuario ya existe. Por favor, elija otro.";
             }
 
         }

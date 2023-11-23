@@ -14,7 +14,7 @@
 
                 <asp:Label runat="server" Text="Contraseña:" CssClass="form-label" />
                 <asp:TextBox runat="server" ID="txtContraseña" CssClass="form-control" />
-                
+                 <asp:Label ID="lblMensaje2" runat="server" Text=""></asp:Label>
                 <asp:Button ID="btnAgregarUsuario" runat="server" Text="Registrar" OnClick="btnAgregarUser_Click1" CssClass="btn btn-success"/>
 
             </div>

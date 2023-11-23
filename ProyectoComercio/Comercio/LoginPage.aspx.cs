@@ -23,10 +23,15 @@ namespace Comercio
             {
                 usuario.User = txtUsuario.Text;
                 usuario.Pass = txtContraseña.Text;
-                if (negocio.Login(usuario))
+                if (negocio.Login(usuario) && usuario.User != null)
                 {
                     Session.Add("usuario", usuario);
                     Response.Redirect("Default.aspx", false);
+                }
+                else
+                {
+                    lblMsj.Text = "Usuario o Contraseña incorrecta, pruebe nuevamente.";
+                    //  Response.Redirect("LoginPage.aspx", false);
                 }
             }
             catch (Exception ex)

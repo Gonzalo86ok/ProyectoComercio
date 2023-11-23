@@ -26,10 +26,21 @@ namespace Comercio
                 Usuario nuevo = new Usuario();
                 UsuarioNegocio negocio = new UsuarioNegocio();
 
+                string usuario = txtUsuario.Text;
+                string contraseña = txtContraseña.Text;
+                nuevo.User = usuario;
+                nuevo.Pass = contraseña;
+                if (negocio.UsuarioExiste(usuario))
+                {
+                    lblMensaje2.Text = "El usuario ya existe. Por favor, elija otro.";
+                    return;
+                }
+                if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
+                {
 
-                nuevo.User = txtUsuario.Text;
-                nuevo.Pass = txtContraseña.Text;
-
+                    lblMensaje2.Text = "El usuario y la contraseña son obligatorios.";
+                    return;
+                }
 
                 if (Request.QueryString["Id"] != null)
                 {
@@ -46,6 +57,7 @@ namespace Comercio
                 Session.Add("error", ex);
                 throw;
             }
+
 
         }
     }

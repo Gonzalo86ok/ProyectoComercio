@@ -23,6 +23,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" Text="Contrasena:" CssClass="form-label" />
                         <asp:TextBox runat="server" ID="txtContraseña" CssClass="form-control" />
+                        <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
                     </div>                                      
                     
                 <asp:Button ID="btnAgregar" runat="server" Text="Agregar Usuario" OnClick="btnAgregar_Click1" CssClass="btn btn-success"/>

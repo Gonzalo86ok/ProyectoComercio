@@ -15,6 +15,7 @@
 
                 <asp:Label runat="server" Text="Nueva Contraseña:" CssClass="form-label" />
                 <asp:TextBox runat="server" ID="txtContraseña" CssClass="form-control" />
+                <asp:Label ID="lblMensaje2" runat="server" Text=""></asp:Label>
 
       
             <asp:Button ID="btnModificar" runat="server" Text="Agregar Cambios" OnClick="btnModificacion_Click1" CssClass="btn btn-success"/>

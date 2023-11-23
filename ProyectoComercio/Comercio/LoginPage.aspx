@@ -33,7 +33,7 @@
                                     <asp:TextBox  type="password" ID="txtContraseña" runat="server" CssClass="form-control"></asp:TextBox>                      
                                 </div>
                                 <div class="mb-3">                                    
-                                         <label class="form-check-label" for="gridCheck1">¿Te olvidaste tu contraseña?</label>
+                                          <asp:Label ID="lblMsj" runat="server" Text=""></asp:Label>
                                 </div>
                              <div class="text-center">
                                     <asp:Button runat="server" ID="btnIngreso" OnClick="btnIngresar_Click1" Text="Ingresar" CssClass="btn btn-success" />
