@@ -29,12 +29,12 @@
                                 <div class="col-6">
                                     <div class="md-3">
                                         <asp:Label Text="Filtrar" runat="server" />
-                                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
+                                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
                                     </div>
                                 </div>
                                 <div class="col-6 text-end">
                                     <h5>Listado Productos</h5>
-                                    <asp:Button runat="server" ID="btnAgregarProducto1" OnClick="btnAgregarProducto_Click1" Text="Agregar Producto" CssClass="btn btn-outline-success" />
+                                    <asp:Button runat="server" ID="btnAgregarProducto1" OnClick="btnAgregarProducto_Click1" Text="Agregar Producto" CssClass="btn btn-success" />
                                     <div class="mb-2"></div>
                                 </div>
                             </div>
@@ -93,18 +93,18 @@
                                 <div class="col-md-6">
                                     <div class="md-3">
                                         <h5>Listado Categoria</h5>
-                                        <asp:Button runat="server" ID="agregarCategoria" OnClick="agregarCategoria_Click" Text="Agregar Categoria" CssClass="btn btn-outline-success" />
+                                        <asp:Button runat="server" ID="agregarCategoria" OnClick="agregarCategoria_Click" Text="Agregar Categoria" CssClass="btn btn-success" />
                                         <div class="mb-2"></div>
                                     </div>
                                 </div>
-                                <asp:GridView runat="server" ID="dgvCategoria" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto" AutoGenerateColumns="false">
+                                <asp:GridView runat="server" ID="dgvCategoria" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto table-condensed" AutoGenerateColumns="false">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Categoría de Producto:">
+                                        <asp:TemplateField HeaderText="Categoría de Producto:" ItemStyle-CssClass="text-center">
                                             <ItemTemplate>
                                                 <asp:Label runat="server" Text='<%# Eval("Tipo") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Acciones">
+                                        <asp:TemplateField HeaderText="Acciones" ItemStyle-CssClass="text-center">
                                             <ItemTemplate>
                                                 <asp:Button runat="server" ID="btnModificarCategoria" Text="Modificar" OnClick="btnModificarCategoria_Click" CommandName="Modificar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-primary" />
                                                 <%--<asp:Button runat="server" ID="btnEliminarCategoria" OnClick="btnEliminarCategoria_Click" Text="Eliminar" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-outline-danger" />--%>
@@ -123,7 +123,7 @@
                                 <div class="col-md-6">
                                     <div class="md-3">
                                         <h5>Listado Medidas</h5>
-                                        <asp:Button runat="server" ID="btnAgregarMedida" OnClick="btnAgregarMedida_Click" Text="Agregar Medida" CssClass="btn btn-outline-success" />
+                                        <asp:Button runat="server" ID="btnAgregarMedida" OnClick="btnAgregarMedida_Click" Text="Agregar Medida" CssClass="btn btn-success" />
                                         <div class="mb-2"></div>
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@
                                 <div class="col-md-6">
                                     <div class="md-3">
                                         <h5>Listado Fabricante o Marca</h5>
-                                        <asp:Button runat="server" ID="agregarFabricante" OnClick="agregarFabricante_Click" Text="Agregar Fabricante" CssClass="btn btn-outline-success" />
+                                        <asp:Button runat="server" ID="agregarFabricante" OnClick="agregarFabricante_Click" Text="Agregar Fabricante" CssClass="btn btn-success" />
                                         <div class="mb-2"></div>
                                     </div>
                                 </div>

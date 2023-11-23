@@ -13,23 +13,22 @@ namespace Comercio
     {
         public List<Categoria> listaCategorias { get; set; }
         public List<Producto> listaProducto { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-            ProductoNegocio productoNegocio = new ProductoNegocio();
             listaCategorias = categoriaNegocio.listar();
-            listaProducto = productoNegocio.listarActivos();
+
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+            Session.Add("listaProductos", productoNegocio.listarActivos());
+            
 
             if (!IsPostBack)
             {
-                dgvProducto.DataSource = listaProducto;
+                dgvProducto.DataSource = Session["listaProductos"];
                 dgvProducto.DataBind();
 
                 gdvCompra.DataSource = (List<Venta>)Session["listaSesionVenta"];
                 gdvCompra.DataBind();
-
 
                 string sumaVentasFormateada = Session["sumaVentas"] != null ? $"$ {Session["sumaVentas"]:#,##0.00}" : "$0.00";
                 if (Session["listaSesionVenta"] != null)
@@ -39,7 +38,6 @@ namespace Comercio
                     txtSumaVentas.Text = sumaVentasFormateada;
                     txtSumaVentas.CssClass = "texto-grande";
                 }
-
                 txtSumaVentas.CssClass = "texto-grande";
                 txtSumaVentas.Text = sumaVentasFormateada;
                 txtSumaVentas.Enabled = false;
@@ -69,7 +67,6 @@ namespace Comercio
                     lbMensaje.Text = "No hay Stock suficiente para este producto (Disponibilidad: " + cantidadDeStock + ")..";
                     lbMensaje.ForeColor = System.Drawing.Color.Red;
                 }
-
                 else
                 {
                     // Crear una nueva venta
@@ -78,7 +75,6 @@ namespace Comercio
                     ProductoNegocio productoNegocio = new ProductoNegocio();
                     producto = productoNegocio.obtenerProducto(idProducto);
                     venta.Producto = producto;
-
                     // Verificar la cantidad total incluyendo la cantidad existente en la lista
                     decimal cantidadTotal = cantidad + ObtenerCantidadEnLista(idProducto);
 
@@ -97,7 +93,6 @@ namespace Comercio
                             List<Venta> listaVenta = new List<Venta>();
                             Session["listaSesionVenta"] = listaVenta;
                         }
-
                         AgregarVentaALista(venta);
 
                         decimal sumaVentas = CalcularSumaVentas((List<Venta>)Session["listaSesionVenta"]);
@@ -111,18 +106,13 @@ namespace Comercio
                         lbMensaje.ForeColor = System.Drawing.Color.Green;
                     }
                 }
-
-
-
             }
             txtCantidad.Text = string.Empty;
         }
-
         // Método para agregar venta a la lista o actualizar cantidad si ya existe
         private void AgregarVentaALista(Venta nuevaVenta)
         {
             List<Venta> listaVenta = (List<Venta>)Session["listaSesionVenta"];
-
             // Buscar si el producto ya está en la lista
             Venta ventaExistente = listaVenta.FirstOrDefault(v => v.Producto.Id == nuevaVenta.Producto.Id);
 
@@ -131,7 +121,6 @@ namespace Comercio
                 // Si el producto existe, actualiza la cantidad y el monto
                 ventaExistente.Cantidad += nuevaVenta.Cantidad;
                 ventaExistente.Monto = ventaExistente.Cantidad * nuevaVenta.Producto.Precio;
-
             }
             else
             {
@@ -139,12 +128,8 @@ namespace Comercio
                 nuevaVenta.Numero = listaVenta.Count + 1; // Asigna el número de venta
                 listaVenta.Add(nuevaVenta);
             }
-
             Session["listaSesionVenta"] = listaVenta;
         }
-
-
-
         private decimal CalcularSumaVentas(List<Venta> listaVentas)
         {
             decimal suma = 0;
@@ -157,56 +142,43 @@ namespace Comercio
         private decimal ObtenerCantidadEnLista(int idProducto)
         {
             decimal cantidadEnLista = 0;
-
             // Lógica para obtener la cantidad del producto en la lista de ventas
             if (Session["listaSesionVenta"] != null)
             {
                 List<Venta> listaVenta = (List<Venta>)Session["listaSesionVenta"];
                 cantidadEnLista = listaVenta.Where(v => v.Producto.Id == idProducto).Sum(v => v.Cantidad);
             }
-
             return cantidadEnLista;
         }
-
         protected void BtnFinalizarVenta_Click(object sender, EventArgs e)
         {
             if (CalcularSumaVentas((List<Venta>)Session["listaSesionVenta"]) == 0)
             {
                 lbMensaje.Text = "No hay productos agregados...";
                 lbMensaje.ForeColor = System.Drawing.Color.Red;
-
             }
             else
             {
                 // Esta funcion es para actualizar el Stock de la venta
-                ActualizarStock((List<Venta>)Session["listaSesionVenta"]);
-                
+                ActualizarStock((List<Venta>)Session["listaSesionVenta"]);              
                 // Aquí guardamos la venta en el historial
-                VentasHistorialNegocio dato = new VentasHistorialNegocio();
-                
-                Usuario usuario = Session["usuario"] as Usuario;
-               
+                VentasHistorialNegocio dato = new VentasHistorialNegocio();               
+                Usuario usuario = Session["usuario"] as Usuario;              
                 // guarda la ventaHistorial y devuelve IdVentaHistorial
                 int idVentaHistorial = dato.AgregarVentaHistorial(usuario.Id);
-
                 // guarda el detalle de la venta y el idVenta al que corresponde
                 VentaHistorialDetalleNegocio detalle = new VentaHistorialDetalleNegocio();
                 detalle.GuardarVentaHistorialDetalle((List<Venta>)Session["listaSesionVenta"], idVentaHistorial);
-
                 limpiarVentanaVenta();
                 lbMensaje.Text = "Venta realizada con exito...";
                 lbMensaje.ForeColor = System.Drawing.Color.Green;
             }
-
         }
-
         protected void btnCancalar_Click(object sender, EventArgs e)
         {
-
             limpiarVentanaVenta();
             lbMensaje.Text = "Venta Cancelada...";
             lbMensaje.ForeColor = System.Drawing.Color.Yellow;
-
         }
         protected void ActualizarStock(List<Venta> listaVenta)
         {
@@ -233,9 +205,7 @@ namespace Comercio
             txtSumaVentas.Text = sumaVentasFormateada;
             txtSumaVentas.CssClass = "texto-grande";
             Session["sumaVentas"] = sumaVentasFormateada;
-
         }
-
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender; // Convierte el objeto sender a un botón
@@ -269,11 +239,9 @@ namespace Comercio
 
                     lbMensaje.Text = "Se elimino de la lista...";
                     lbMensaje.ForeColor = System.Drawing.Color.Yellow;
-
                 }
             }
         }
-
         private void ReasignarNumerosCompra(List<Venta> listaVentas)
         {
             // Recorrer la lista y asignar los números de compra actualizados
@@ -282,6 +250,12 @@ namespace Comercio
                 listaVentas[i].Numero = i + 1;
             }
         }
-
+        protected void filtro_TextChanged(object sender, EventArgs e)
+        {
+            List<Producto> lista = (List<Producto>)Session["listaProductos"];
+            List<Producto> listaFiltrada = lista.FindAll(x=> x.Categoria.Tipo.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvProducto.DataSource = listaFiltrada;
+            dgvProducto.DataBind();                 
+        }
     }
 }
