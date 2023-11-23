@@ -35,8 +35,6 @@ namespace Negocio
                     lista.Add(ventaHistorial);
                 }
 
-                datos.cerrarConexion();
-
                 return lista;
             }
             catch (Exception ex)
