@@ -15,7 +15,7 @@ namespace Negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                string consulta = "SELECT Id, IdProducto, CantidadAnterior, CantidadNueva, FechaHoraRegistro, Operacion, Comentario, IdUsuario " +
+                string consulta = "SELECT Id, IdProducto, CantidadAnterior, CantidadNueva, FechaHoraRegistro, Operacion, Comentario, UsuarioId " +
                    "FROM StockHistorial ORDER BY FechaHoraRegistro DESC";
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -28,8 +28,8 @@ namespace Negocio
                     historial.CantidadNueva = (decimal)datos.Lector["CantidadNueva"];
                     historial.FechaHoraRegistro = (DateTime)datos.Lector["FechaHoraRegistro"];
                     historial.Operacion = (string)datos.Lector["Operacion"];
-                    historial.Comentario = (string)datos.Lector["Comentario"];
-                    historial.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    historial.Comentario = datos.Lector["Comentario"] != DBNull.Value ? (string)datos.Lector["Comentario"] : string.Empty;
+                    historial.IdUsuario = (int)datos.Lector["UsuarioId"];
 
                     lista.Add(historial);
                 }

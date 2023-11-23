@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,28 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            StockHistorialNegocio stockHistorialNegocio = new StockHistorialNegocio();
+            VentasHistorialNegocio ventasHistorialNegocio = new VentasHistorialNegocio();
+            if (!IsPostBack)
+            {
+                try
+                {
+                    List<StockHistorial> listaStockHistorials = stockHistorialNegocio.ListarTodosStockHistorial();
+                    dgvStockHistoria.DataSource = listaStockHistorials;
+                    dgvStockHistoria.DataBind();
+
+                    List<VentasHistorial> listaVentas = ventasHistorialNegocio.ListarHistorialVentas();
+                    dgvHistorialVentas.DataSource = listaVentas;
+                    dgvHistorialVentas.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw;
+                }
+            }
+
+           
 
         }
     }

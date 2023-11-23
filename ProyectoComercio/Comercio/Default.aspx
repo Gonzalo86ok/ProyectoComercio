@@ -3,11 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <div class="  container p-2 ">
         <h3 class="p-1 text-center border border-primary-subtle rounded bg-primary bg-opacity-50  p-2 mb-2">Informes </h3>
     </div>
-    
+
 
     <%--Contenedor inicial tres cuadros  --%>
     <div class="container">
@@ -31,6 +31,7 @@
                     </div>
                 </div>
             </div>
+
             <%--Contenedor final tres cuadros Dia  --%>
             <%--Contenedor inicial tres cuadros Mes --%>
             <div class="container text-center">
@@ -54,6 +55,36 @@
             </div>
         </div>
     </div>
+    <%-- Pestallas para los informes --%>
+    <div class="container">
+        <div class="md-3 p-3 bg-primary bg-opacity-10 border border-4 border-primary-subtle rounded-4">
+            <ul class="nav nav-tabs table-container pb-4 border border-primary-subtle p-2 mb-2  rounded bg-primary bg-opacity-50" id="myTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="ventas-tab" data-bs-toggle="tab" data-bs-target="#ventas" role="tab" aria-controls="ventas" aria-selected="true">Informe de Ventas</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="stock-tab" data-bs-toggle="tab" data-bs-target="#stock" role="tab" aria-controls="stock" aria-selected="false">Informe de Modificaciones de Stock</a>
+                </li>
+            </ul>
 
-    <%--Contenedor final tres cuadros Mes  --%>
+            <!-- Contenido de las pestañas -->
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="ventas" role="tabpanel" aria-labelledby="ventas-tab">
+                    <!-- Contenido del informe de ventas -->
+                    <asp:GridView runat="server" ID="dgvHistorialVentas" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto">
+                    </asp:GridView>
+
+                    <!-- ... -->
+                </div>
+                <div class="tab-pane fade" id="stock" role="tabpanel" aria-labelledby="stock-tab">
+                    <!-- Contenido del informe de modificaciones de stock -->
+                    <asp:GridView runat="server" ID="dgvStockHistoria" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto">
+                    </asp:GridView>
+                    <!-- ... -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </asp:Content>
