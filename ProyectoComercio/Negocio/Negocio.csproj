@@ -50,7 +50,6 @@
     <Compile Include="Seguridad.cs" />
     <Compile Include="StockHistorialNegocio.cs" />
     <Compile Include="StockNegocio.cs" />
-    <Compile Include="SucursalNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="VentaHistorialDetalleNegocio.cs" />
     <Compile Include="VentasHistorialNegocio.cs" />
