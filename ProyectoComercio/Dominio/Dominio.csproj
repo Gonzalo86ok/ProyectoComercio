@@ -46,6 +46,7 @@
     <Compile Include="Persona.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="StockHistorial.cs" />
+    <Compile Include="StockHistorialLista.cs" />
     <Compile Include="StockItem.cs" />
     <Compile Include="TipoComercio.cs" />
     <Compile Include="TipoRol.cs" />

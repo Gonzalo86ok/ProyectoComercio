@@ -5,19 +5,21 @@
         <h3 class="p-1 text-center border border-primary-subtle rounded bg-primary bg-opacity-50 p-2 mb-2">Venta</h3>
     </div>
     <div class="row">
-        <div class="col-6 mx-auto">
+        <div class="container p-2">
             <div class="mb-3">
-                <asp:Label Text="Filtrar" runat="server" />
-                <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
-            </div>
+                    <div class="container border border-primary-subtle rounded p-2 mb-2 bg-primary bg-opacity-50">
+                        <asp:Label Text="Búsqueda rápida:" runat="server" />
+                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
+                    </div>
+                </div>
         </div>
     </div>
     <div class="container p-2">
         <!-- Contenedor de la ventana de ventas -->
-        <div class="container-fluid">
+        <div class="container-fluid ">
             <div class="row">
                 <!-- División para el contenido principal -->
-                <div class="col-md-9">
+                <div class="col-md-9 md-3 p-3 bg-primary bg-opacity-10 border border-6 border-primary-subtle rounded-4">
                     <div class="row row-cols-1 row-cols-md-4 g-1 justify-content-center text-center d-flex">
                         <asp:Repeater ID="dgvProducto" runat="server">
                             <ItemTemplate>
@@ -43,8 +45,8 @@
                     <asp:Label ID="lbMensaje" runat="server" Text=""></asp:Label>
                     <!-- Contenido fijo a la derecha -->
                     <div class="position-sticky top-0">
-                        <div class="border border-primary-subtle rounded-3 p-3" style="height: calc(75vh - 150px); width: 330px; overflow-y: auto;">
-                            <asp:GridView ID="gdvCompra" runat="server" CssClass="table table-dark table-border" AutoGenerateColumns="false">
+                        <div class="border border-primary-subtle rounded-3 p-3 md-3 p-3 bg-primary bg-opacity-10 border border-4 border-primary-subtle rounded-4" style="height: calc(75vh - 150px); width: 330px; overflow-y: auto;">
+                            <asp:GridView ID="gdvCompra" runat="server" CssClass=" table table-dark table-border md-3 p-3 bg-primary bg-opacity-10 border border-primary-subtle rounded-4" AutoGenerateColumns="false">
                                 <Columns>
                                     <asp:BoundField HeaderText="N°" DataField="Numero" />
                                     <asp:BoundField HeaderText="Producto" DataField="Producto.Nombre" />
@@ -63,8 +65,8 @@
                                 <asp:Button ID="btnCancalar" runat="server" Text="Cancelar" CssClass="btn btn-outline-warning" OnClick="btnCancalar_Click" />
                             </div>
                             <div class="mt-3 input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Total:</span>
-                                <asp:TextBox ID="txtSumaVentas" runat="server" CssClass="form-control mb-2 rounded" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"></asp:TextBox>
+                                <span class="input-group-text" id="inputGroup-sizing-sm" style="font-weight: bold; font-size: 18px; color: #004080;">Total:</span>
+                                <asp:TextBox ID="txtSumaVentas" runat="server" Style="border: 2px solid #6C757D; border-radius: 8px; padding: 10px; font-size: larger; text-align: center; background-color: #004080; color: #FFFFFF;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"></asp:TextBox>
                             </div>
                         </div>
                     </div>

@@ -19,7 +19,7 @@ namespace Comercio
             {
                 try
                 {
-                    List<StockHistorial> listaStockHistorials = stockHistorialNegocio.ListarTodosStockHistorial();
+                    List<StockHistorialLista> listaStockHistorials = stockHistorialNegocio.ListarStockHistorialGrilla();
                     dgvStockHistoria.DataSource = listaStockHistorials;
                     dgvStockHistoria.DataBind();
 
@@ -33,8 +33,6 @@ namespace Comercio
                     throw;
                 }
             }
-
-           
 
         }
     }

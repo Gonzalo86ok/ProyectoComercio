@@ -71,6 +71,44 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="ventas" role="tabpanel" aria-labelledby="ventas-tab">
                     <!-- Contenido del informe de ventas -->
+                    <div class="table-container pb-4 border border-primary-subtle p-2 mb-2  rounded bg-primary bg-opacity-50">
+                        <div class="container border border-primary-subtle rounded p-2 mb-2 bg-primary bg-opacity-50">
+                            <p>Indicar parámetros de búsqueda:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="txtDesde" class="form-label">Desde:</label>
+                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" type="date"></asp:TextBox>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="txtHasta" class="form-label">Hasta:</label>
+                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" type="date"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label class="visually-hidden" for="btnBuscar">Buscar</label>
+                                    <asp:Button ID="Button1" runat="server" Text="Buscar" CssClass="btn btn-success"></asp:Button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-secondary" type="button">Limpiar búsqueda</button>
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                            <!-- Línea separadora -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="txtBusqueda" class="form-label">Búsqueda rápida:</label>
+                                    <div class="input-group">
+                                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>
+                                        <button class="btn btn-secondary" type="button">Buscar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                     <asp:GridView runat="server" ID="dgvHistorialVentas" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto">
                     </asp:GridView>
 
@@ -78,8 +116,89 @@
                 </div>
                 <div class="tab-pane fade" id="stock" role="tabpanel" aria-labelledby="stock-tab">
                     <!-- Contenido del informe de modificaciones de stock -->
-                    <asp:GridView runat="server" ID="dgvStockHistoria" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto">
+
+                    <div class="table-container pb-4 border border-primary-subtle p-2 mb-2  rounded bg-primary bg-opacity-50">
+                        <div class="container border border-primary-subtle rounded p-2 mb-2 bg-primary bg-opacity-50">
+                            <p>Indicar parámetros de búsqueda:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="txtDesde" class="form-label">Desde:</label>
+                                    <asp:TextBox ID="txtDesde" runat="server" CssClass="form-control" type="date"></asp:TextBox>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="txtHasta" class="form-label">Hasta:</label>
+                                    <asp:TextBox ID="txtHasta" runat="server" CssClass="form-control" type="date"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label class="visually-hidden" for="btnBuscar">Buscar</label>
+                                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-success"></asp:Button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-secondary" type="button">Limpiar búsqueda</button>
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                            <!-- Línea separadora -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="txtBusqueda" class="form-label">Búsqueda rápida:</label>
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>
+                                        <button class="btn btn-secondary" type="button">Buscar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <asp:GridView runat="server" ID="dgvStockHistoria" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto" AutoGenerateColumns="false">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Fecha y Hora">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("FechaHoraRegistro") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Codigo">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("Producto.Codigo") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Producto">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("Producto.Nombre") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Cantidad">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("CantidadAnterior") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Movimiento">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("CantidadNueva") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Operación">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("Operacion") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Comentario">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("Comentario") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Usuario">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Text='<%# Eval("Usuario.User") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Acciones"></asp:TemplateField>
+                        </Columns>
                     </asp:GridView>
+
                     <!-- ... -->
                 </div>
             </div>
