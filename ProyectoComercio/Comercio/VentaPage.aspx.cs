@@ -17,6 +17,7 @@ namespace Comercio
         {
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             listaCategorias = categoriaNegocio.listar();
+                       
 
             ProductoNegocio productoNegocio = new ProductoNegocio();
             Session.Add("listaProductos", productoNegocio.listarActivos());
@@ -29,6 +30,13 @@ namespace Comercio
 
                 gdvCompra.DataSource = (List<Venta>)Session["listaSesionVenta"];
                 gdvCompra.DataBind();
+
+                ddlCategorias.DataSource = listaCategorias;
+                ddlCategorias.DataTextField = "Tipo";
+                ddlCategorias.DataValueField = "Id";
+                ddlCategorias.DataBind();
+
+                ddlCategorias.Items.Insert(0, new ListItem("Elige una categoría", ""));
 
                 string sumaVentasFormateada = Session["sumaVentas"] != null ? $"$ {Session["sumaVentas"]:#,##0.00}" : "$0.00";
                 if (Session["listaSesionVenta"] != null)
@@ -108,6 +116,7 @@ namespace Comercio
                 }
             }
             txtCantidad.Text = string.Empty;
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
         // Método para agregar venta a la lista o actualizar cantidad si ya existe
         private void AgregarVentaALista(Venta nuevaVenta)
@@ -129,6 +138,7 @@ namespace Comercio
                 listaVenta.Add(nuevaVenta);
             }
             Session["listaSesionVenta"] = listaVenta;
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
         private decimal CalcularSumaVentas(List<Venta> listaVentas)
         {
@@ -179,6 +189,8 @@ namespace Comercio
             limpiarVentanaVenta();
             lbMensaje.Text = "Venta Cancelada...";
             lbMensaje.ForeColor = System.Drawing.Color.Yellow;
+
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
         protected void ActualizarStock(List<Venta> listaVenta)
         {
@@ -240,6 +252,7 @@ namespace Comercio
                     lbMensaje.Text = "Se elimino de la lista...";
                     lbMensaje.ForeColor = System.Drawing.Color.Yellow;
                 }
+                Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
             }
         }
         private void ReasignarNumerosCompra(List<Venta> listaVentas)
@@ -250,6 +263,7 @@ namespace Comercio
                 listaVentas[i].Numero = i + 1;
             }
         }
+        /*
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
             List<Producto> lista = (List<Producto>)Session["listaProductos"];
@@ -257,5 +271,29 @@ namespace Comercio
             dgvProducto.DataSource = listaFiltrada;
             dgvProducto.DataBind();                 
         }
+        */
+        protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Session["listaProductos"] != null)
+            {
+                List<Producto> lista = (List<Producto>)Session["listaProductos"];
+                string categoriaSeleccionada = ddlCategorias.SelectedItem.Text;
+
+                if (categoriaSeleccionada == "Elige una categoría")
+                {
+                    // Si se selecciona "Elige una categoría", mostrar todos los productos
+                    dgvProducto.DataSource = lista;
+                }
+                else
+                {
+                    // Filtrar la lista de productos según la categoría seleccionada
+                    List<Producto> listaFiltrada = lista.FindAll(x => x.Categoria.Tipo.Equals(categoriaSeleccionada, StringComparison.OrdinalIgnoreCase));
+                    dgvProducto.DataSource = listaFiltrada;
+                }
+
+                dgvProducto.DataBind();
+            }
+        }
+
     }
 }

@@ -2,18 +2,21 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container p-2">
-        <h3 class="p-1 text-center border border-primary-subtle rounded bg-primary bg-opacity-50 p-2 mb-2">Venta</h3>
-    </div>
-    <div class="row">
-        <div class="container p-2">
-            <div class="mb-3">
-                    <div class="container border border-primary-subtle rounded p-2 mb-2 bg-primary bg-opacity-50">
-                        <asp:Label Text="Búsqueda rápida:" runat="server" />
-                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
-                    </div>
+        <div class="container border border-primary-subtle rounded p-2 mb-2 bg-primary bg-opacity-50 text-center">
+            <div class="row align-items-center">
+                <div class="col">
+                    <asp:DropDownList runat="server" ID="ddlCategorias" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCategorias_SelectedIndexChanged">
+                        <asp:ListItem Text="Elige una categoría" Value="" Selected="True"></asp:ListItem>
+           
+                    </asp:DropDownList>
                 </div>
+                <div class="col">
+                    <h3 class="p-1 text-primary">Ventas</h3>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="container p-2">
         <!-- Contenedor de la ventana de ventas -->
         <div class="container-fluid ">
@@ -59,19 +62,20 @@
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
-                            <!-- Elementos fijos abajo -->
-                            <div class="mt-3 d-flex justify-content-between">
-                                <asp:Button ID="BtnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="btn btn-outline-primary" OnClick="BtnFinalizarVenta_Click" />
-                                <asp:Button ID="btnCancalar" runat="server" Text="Cancelar" CssClass="btn btn-outline-warning" OnClick="btnCancalar_Click" />
-                            </div>
-                            <div class="mt-3 input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm" style="font-weight: bold; font-size: 18px; color: #004080;">Total:</span>
-                                <asp:TextBox ID="txtSumaVentas" runat="server" Style="border: 2px solid #6C757D; border-radius: 8px; padding: 10px; font-size: larger; text-align: center; background-color: #004080; color: #FFFFFF;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"></asp:TextBox>
-                            </div>
+                        </div>
+                        <!-- Elementos fijos abajo -->
+                        <div class="mt-3 d-flex justify-content-between">
+                            <asp:Button ID="BtnFinalizarVenta" runat="server" Text="Finalizar Venta" CssClass="btn btn-outline-primary" OnClick="BtnFinalizarVenta_Click" />
+                            <asp:Button ID="btnCancalar" runat="server" Text="Cancelar" CssClass="btn btn-outline-warning" OnClick="btnCancalar_Click" />
+                        </div>
+                        <div class="mt-3 input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm" style="font-weight: bold; font-size: 18px; color: #004080;">Total:</span>
+                            <asp:TextBox ID="txtSumaVentas" runat="server" Style="border: 2px solid #6C757D; border-radius: 8px; padding: 10px; font-size: larger; text-align: center; background-color: #004080; color: #FFFFFF;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"></asp:TextBox>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+
 </asp:Content>
