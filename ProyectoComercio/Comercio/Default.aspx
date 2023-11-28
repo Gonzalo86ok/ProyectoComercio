@@ -6,45 +6,43 @@
     <div class="  container p-2 ">
         <h3 class="p-1 text-center border border-primary-subtle rounded bg-primary bg-opacity-50  p-2 mb-2">Informes </h3>
     </div>
-    <%--Contenedor inicial tres cuadros  --%>
+    <%-- Contenedor inicial tres cuadros  --%>
     <div class="container">
-        <div class="table-container pb-4 border border-primary-subtle p-2 mb-2  rounded bg-primary bg-opacity-50">
+        <div class="table-container pb-4 border border-primary-subtle p-2 mb-2 rounded bg-primary bg-opacity-50">
             <div class="container text-center">
                 <div class="row">
-                    <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Ventas del día</h4>
-                        <asp:Label ID="lbVentaDia" runat="server" Text="00.0" Style="font-size: 24px;"></asp:Label>
+                    <!-- Primer conjunto con fondo negro -->
+                    <div class="col border border-primary rounded p-3 bg-dark bg-opacity-90">
+                        <h4 class="text-primary">Ventas del día</h4>
+                        <asp:Label ID="lbVentaDia" runat="server" Text="00.0" Style="font-size: 24px; color: #007bff;"></asp:Label>
                     </div>
-                    <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Ventas del Mes</h4>
-                        <asp:Label ID="lbVentaMes" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                    <div class="col border border-primary rounded p-3 ml-3 bg-dark bg-opacity-90">
+                        <h4 class="text-primary">Ventas del Mes</h4>
+                        <asp:Label ID="lbVentaMes" runat="server" Text="0.00" Style="font-size: 24px; color: #007bff;"></asp:Label>
                     </div>
-                    <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Ventas del Año</h4>
-                        <asp:Label ID="lbVentaAnual" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                    <div class="col border border-primary rounded p-3 ml-3 bg-dark bg-opacity-90">
+                        <h4 class="text-primary">Ventas del Año</h4>
+                        <asp:Label ID="lbVentaAnual" runat="server" Text="0.00" Style="font-size: 24px; color: #007bff;"></asp:Label>
                     </div>
-                </div>
-            </div>
-            <%--Contenedor final tres cuadros Dia  --%>
-            <%--Contenedor inicial tres cuadros Mes --%>
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Monto del día</h4>
-                        <asp:Label ID="lbMontoDia" runat="server" Text="00.0" Style="font-size: 24px;"></asp:Label>
+                    <!-- Segundo conjunto con fondo negro -->
+                    <div class="col border border-primary rounded p-3 ml-3 bg-dark bg-opacity-90">
+                        <h4 class="text-primary">Monto del día</h4>
+                        <asp:Label ID="lbMontoDia" runat="server" Text="00.0" Style="font-size: 24px; color: #007bff;"></asp:Label>
                     </div>
-                    <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Monto del Mes</h4>
-                        <asp:Label ID="lbMontoMes" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                    <div class="col border border-primary rounded p-3 ml-3 bg-dark bg-opacity-90">
+                        <h4 class="text-primary">Monto del Mes</h4>
+                        <asp:Label ID="lbMontoMes" runat="server" Text="0.00" Style="font-size: 24px; color: #007bff;"></asp:Label>
                     </div>
-                    <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Monto del Año</h4>
-                        <asp:Label ID="lbMontoAnual" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                    <div class="col border border-primary rounded p-3 ml-3 bg-dark bg-opacity-90">
+                        <h4 class="text-primary">Monto del Año</h4>
+                        <asp:Label ID="lbMontoAnual" runat="server" Text="0.00" Style="font-size: 24px; color: #007bff;"></asp:Label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <%-- Pestallas para los informes --%>
     <div class="container">
         <div class="md-3 p-3 bg-primary bg-opacity-10 border border-4 border-primary-subtle rounded-4">
@@ -81,7 +79,7 @@
                                     <label class="visually-hidden" for="btnBuscar">Buscar</label>
                                     <asp:Button ID="BtnFechaVen" runat="server" Text="Buscar" OnClick="BtnFechaVen_Click" CssClass="btn btn-success"></asp:Button>
                                 </div>
-                                <div class="col-md-6">                                   
+                                <div class="col-md-6">
                                     <asp:Button ID="btnLimpiarVent" runat="server" Text="Limpiar búsqueda" CssClass="btn btn-secondary" OnClick="btnLimpiarVent_Click" />
                                 </div>
                             </div>
@@ -91,7 +89,7 @@
                                 <div class="col-md-6">
                                     <label for="txtBusqueda" class="form-label">Búsqueda rápida:</label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>                                       
+                                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>
                                         <asp:Button ID="BtnbusquedaRapidaVent" runat="server" Text="Buscar" CssClass="btn btn-secondary" OnClick="BtnbusquedaRapidaVent_Click" />
                                     </div>
                                 </div>
@@ -110,7 +108,7 @@
                             <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                         </Columns>
                     </asp:GridView>
-                </div>           
+                </div>
                 <div class="tab-pane fade" id="stock" role="tabpanel" aria-labelledby="stock-tab">
                     <!-- Contenido del informe de modificaciones de stock -->
                     <div class="table-container pb-4 border border-primary-subtle p-2 mb-2  rounded bg-primary bg-opacity-50">
@@ -132,17 +130,17 @@
                                     <asp:Button ID="btnStockFecha" runat="server" Text="Buscar" CssClass="btn btn-secondary" OnClick="btnStockFecha_Click" />
                                 </div>
                                 <div class="col-md-6">
-                                     <asp:Button ID="btnLimpiarBusqStock" runat="server" Text="Limpiar búsqueda" CssClass="btn btn-secondary" OnClick="btnLimpiarBusqStock_Click" />
+                                    <asp:Button ID="btnLimpiarBusqStock" runat="server" Text="Limpiar búsqueda" CssClass="btn btn-secondary" OnClick="btnLimpiarBusqStock_Click" />
                                 </div>
                             </div>
-                            <hr class="my-4">                                                                            
+                            <hr class="my-4">
                             <!-- Línea separadora -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="txtBusqueda" class="form-label">Búsqueda rapida:</label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>                                                            
-                                         <asp:Button ID="btnBusqRapidaStock" runat="server" Text="Buscar" CssClass="btn btn-secondary" OnClick="btnBusqRapidaStock_Click" />
+                                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>
+                                        <asp:Button ID="btnBusqRapidaStock" runat="server" Text="Buscar" CssClass="btn btn-secondary" OnClick="btnBusqRapidaStock_Click" />
                                     </div>
                                 </div>
                             </div>

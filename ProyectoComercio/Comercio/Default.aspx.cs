@@ -98,6 +98,7 @@ namespace Comercio
                 dgvStockHistoria.DataSource = listaFiltrada;
                 dgvStockHistoria.DataBind();
             }
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
 
         protected void btnLimpiarBusqStock_Click(object sender, EventArgs e)
@@ -107,7 +108,7 @@ namespace Comercio
 
             dgvStockHistoria.DataSource = Session["listaHistorialStock"];
             dgvStockHistoria.DataBind();
-
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
 
         protected void btnBusqRapidaStock_Click(object sender, EventArgs e)
@@ -116,6 +117,8 @@ namespace Comercio
             List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()) && x.usuario.User.ToUpper().Contains(txtBusqueda.Text.ToUpper()));           
             dgvStockHistoria.DataSource = listaFiltrada;
             dgvStockHistoria.DataBind();
+
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
 
         protected void dgvHistorialVentas_RowDataBound(object sender, GridViewRowEventArgs e)
