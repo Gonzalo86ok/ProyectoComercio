@@ -93,6 +93,55 @@ namespace Negocio
             }
 
         }
+        public List<VentaInforme> ObtenerVentasInforme()
+        {
+            List<VentaInforme> ventas = new List<VentaInforme>();
+
+            string consulta = @"SELECT
+                                    VHD.IdVenta AS NroVenta,
+                                    VHD.NumeroOrden AS Numero,
+                                    P.Nombre AS ProductoNombre,
+                                    VHD.Cantidad AS Cantidad,
+                                    VHD.Precio * VHD.Cantidad AS Monto,
+                                    VH.FechaHoraRegistro AS Fecha,
+                                    U.Usuario AS Usuario
+                                FROM
+                                    VentaHistorialDetalle VHD
+                                JOIN
+                                    VentasHistorial VH ON VH.ID = VHD.IdVenta
+                                JOIN
+                                    Productos P ON VHD.IdProducto = P.Id
+                                JOIN
+                                    Usuarios U ON VH.IdUsuario = U.ID";
+
+            AccesoADatos datos = new AccesoADatos();
+            datos.setearConsulta(consulta);
+            datos.ejecutarLectura();
+
+            while (datos.Lector.Read())
+            {
+                VentaInforme venta = new VentaInforme
+                {
+                    Id = (int)datos.Lector["NroVenta"], // Este corresponde al numero de la venta
+                    Numero = (int)datos.Lector["Numero"],
+                    Cantidad = (decimal)datos.Lector["Cantidad"],
+                    Monto = (decimal)datos.Lector["Monto"],
+                    Fecha = (DateTime)datos.Lector["Fecha"],
+                    Usuario = datos.Lector["Usuario"].ToString(),
+                    Producto = new Producto // Asumiendo que tienes una clase Producto similar definida
+                    {
+                        Nombre = datos.Lector["ProductoNombre"].ToString()
+                        // Agrega más propiedades de Producto si es necesario
+                    }
+                };
+
+                ventas.Add(venta);
+            }
+
+            datos.cerrarConexion();
+
+            return ventas;
+        }
 
     }
 }

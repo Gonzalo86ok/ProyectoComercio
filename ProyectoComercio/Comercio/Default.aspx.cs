@@ -15,17 +15,27 @@ namespace Comercio
         {
             VentasHistorialNegocio ventasHistorialNegocio = new VentasHistorialNegocio();
             StockHistorialNegocio stockHistorialNegocio = new StockHistorialNegocio();
+            VentaHistorialDetalleNegocio ventaHistorialDetalleNegocio = new VentaHistorialDetalleNegocio();
             if (!IsPostBack)
             {
                 try
                 {
-                    Session.Add("listaHistorialVentas", ventasHistorialNegocio.ListarHistorialVentas());
-                    dgvHistorialVentas.DataSource = Session["listaHistorialVentas"];
+                    Session.Add("listaVentaInforme", ventaHistorialDetalleNegocio.ObtenerVentasInforme());
+                    dgvHistorialVentas.DataSource = Session["listaVentaInforme"];
                     dgvHistorialVentas.DataBind();
 
                     Session.Add("listaHistorialStock", stockHistorialNegocio.ListarStockHistorialGrilla());
                     dgvStockHistoria.DataSource = Session["listaHistorialStock"];
                     dgvStockHistoria.DataBind();
+
+                    
+                    lbVentaDia.Text = ventasHistorialNegocio.ObtenerCantidadVentasDelDia().ToString();
+                    lbVentaMes.Text = ventasHistorialNegocio.ObtenerCantidadVentasDelMes().ToString();
+                    lbVentaAnual.Text = ventasHistorialNegocio.ObtenerCantidadVentasDelAnio(DateTime.Now.Year).ToString();
+                    lbMontoDia.Text = "$ " + (ventasHistorialNegocio.ObtenerTotalVentasHoy().ToString("N2"));
+                    lbMontoMes.Text = "$ " + (ventasHistorialNegocio.ObtenerTotalVentasMesActual().ToString("N2"));
+                    lbMontoAnual.Text = "$ " + (ventasHistorialNegocio.ObtenerTotalVentasAño(DateTime.Now.Year).ToString("N2"));
+
                 }
                 catch (Exception ex)
                 {
@@ -44,28 +54,35 @@ namespace Comercio
                 fechaDesde = fechaDesde.Date;
                 fechaHasta = fechaHasta.Date.AddDays(1).AddTicks(-1);
 
-                List<VentasHistorial> lista = (List<VentasHistorial>)Session["listaHistorialVentas"];
-                List<VentasHistorial> listaFiltrada = lista.FindAll(x => x.FechaHoraRegistro >= fechaDesde && x.FechaHoraRegistro <= fechaHasta); ;
-                
-                dgvStockHistoria.DataSource = listaFiltrada;
-                dgvStockHistoria.DataBind();
+                List<VentaInforme> lista = (List<VentaInforme>)Session["listaVentaInforme"];
+                List<VentaInforme> listaFiltrada = lista.FindAll(x => x.Fecha >= fechaDesde && x.Fecha <= fechaHasta); ;
+
+                dgvHistorialVentas.DataSource = listaFiltrada;
+                dgvHistorialVentas.DataBind();
             }
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
 
         protected void btnLimpiarVent_Click(object sender, EventArgs e)
         {
             txtDesdeV.Text = string.Empty;
             txtHastaV.Text = string.Empty;
+
+            dgvHistorialVentas.DataSource = Session["listaVentaInforme"];
+            dgvHistorialVentas.DataBind();
+
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
 
         protected void BtnbusquedaRapidaVent_Click(object sender, EventArgs e)
         {
-            List<VentasHistorial> lista = (List<VentasHistorial>)Session["listaHistorialVentas"];
-            List<VentasHistorial> listaFiltrada = lista;
+            List<StockHistorialLista> lista = (List<StockHistorialLista>)Session["listaHistorialStock"];
+            List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()) && x.usuario.User.ToUpper().Contains(txtBusqueda.Text.ToUpper()));
             dgvStockHistoria.DataSource = listaFiltrada;
             dgvStockHistoria.DataBind();
+            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
         }
-
+        // Stock filtros
         protected void btnStockFecha_Click(object sender, EventArgs e)
         {
             DateTime fechaDesde, fechaHasta;         
@@ -87,6 +104,10 @@ namespace Comercio
         {
             txtDesde.Text = string.Empty;
             txtHasta.Text = string.Empty;
+
+            dgvStockHistoria.DataSource = Session["listaHistorialStock"];
+            dgvStockHistoria.DataBind();
+
         }
 
         protected void btnBusqRapidaStock_Click(object sender, EventArgs e)
@@ -95,6 +116,20 @@ namespace Comercio
             List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()) && x.usuario.User.ToUpper().Contains(txtBusqueda.Text.ToUpper()));           
             dgvStockHistoria.DataSource = listaFiltrada;
             dgvStockHistoria.DataBind();
+        }
+
+        protected void dgvHistorialVentas_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int rowNumber = e.Row.RowIndex + 1; // El índice comienza desde cero, así que se suma 1
+
+                // Encuentra el control donde deseas mostrar el número de fila
+                TableCell cell = e.Row.Cells[0]; // Suponiendo que el número de fila irá en la primera columna
+
+                // Agrega el número de fila a la celda
+                cell.Text = rowNumber.ToString();
+            }
         }
     }
 }

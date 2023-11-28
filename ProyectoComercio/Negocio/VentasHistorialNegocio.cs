@@ -125,6 +125,164 @@ namespace Negocio
 
             return -1; // O algún valor que indique que no se encontró ninguna venta
         }
+        public decimal ObtenerTotalVentasHoy()
+        {
+            decimal totalVentas = 0;
+
+            string consulta = @"
+                             SELECT SUM(VHD.Precio * VHD.Cantidad) AS TotalVentas
+                                FROM VentasHistorial VH
+                             JOIN VentaHistorialDetalle VHD ON VH.ID = VHD.IdVenta
+                                WHERE CONVERT(date, VH.FechaHoraRegistro) = CONVERT(date, GETDATE())";
+
+            AccesoADatos datos = new AccesoADatos();
+            datos.setearConsulta(consulta);
+            datos.ejecutarLectura();
+
+            if (datos.Lector.Read() && datos.Lector["TotalVentas"] != DBNull.Value)
+            {
+                totalVentas = Convert.ToDecimal(datos.Lector["TotalVentas"]);
+            }
+
+            datos.cerrarConexion();
+
+            return totalVentas;
+        }
+       
+        public decimal ObtenerTotalVentasMesActual()
+        {
+            decimal totalVentas = 0;
+
+            string consulta = @"
+                    SELECT SUM(VHD.Precio * VHD.Cantidad) AS TotalVentas
+                    FROM VentasHistorial VH
+                    JOIN VentaHistorialDetalle VHD ON VH.ID = VHD.IdVenta
+                    WHERE YEAR(VH.FechaHoraRegistro) = YEAR(GETDATE())
+                    AND MONTH(VH.FechaHoraRegistro) = MONTH(GETDATE())";
+
+            AccesoADatos datos = new AccesoADatos();
+            datos.setearConsulta(consulta);
+            datos.ejecutarLectura();
+
+            if (datos.Lector.Read() && datos.Lector["TotalVentas"] != DBNull.Value)
+            {
+                totalVentas = Convert.ToDecimal(datos.Lector["TotalVentas"]);
+            }
+
+            datos.cerrarConexion();
+
+            return totalVentas;
+        }
+        public decimal ObtenerTotalVentasAño(int año)
+        {
+            decimal totalVentas = 0;
+
+            string consulta = @"
+                            SELECT SUM(VHD.Precio * VHD.Cantidad) AS TotalVentas
+                        FROM VentasHistorial VH
+                            JOIN VentaHistorialDetalle VHD ON VH.ID = VHD.IdVenta
+                        WHERE YEAR(VH.FechaHoraRegistro) = @Año";
+
+            AccesoADatos datos = new AccesoADatos();
+            datos.setearConsulta(consulta);
+            datos.setearParametro("@Año", año);
+            datos.ejecutarLectura();
+
+            if (datos.Lector.Read() && datos.Lector["TotalVentas"] != DBNull.Value)
+            {
+                totalVentas = Convert.ToDecimal(datos.Lector["TotalVentas"]);
+            }
+
+            datos.cerrarConexion();
+
+            return totalVentas;
+        }
+        public int ObtenerCantidadVentasDelDia()
+        {
+            int cantidadVentas = 0;
+
+            try
+            {
+                string consulta = @"SELECT COUNT(*) AS CantidadVentas
+                            FROM VentasHistorial VH
+                            WHERE CONVERT(date, VH.FechaHoraRegistro) = CONVERT(date, GETDATE())";
+
+                AccesoADatos datos = new AccesoADatos();
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    cantidadVentas = Convert.ToInt32(datos.Lector["CantidadVentas"]);
+                }
+
+                datos.cerrarConexion();
+            }
+            catch (Exception)
+            {
+                // Manejo de excepciones
+            }
+
+            return cantidadVentas;
+        }
+        public int ObtenerCantidadVentasDelMes()
+        {
+            int cantidadVentas = 0;
+
+            try
+            {
+                string consulta = @"SELECT COUNT(*) AS CantidadVentas
+                            FROM VentasHistorial VH
+                            WHERE YEAR(VH.FechaHoraRegistro) = YEAR(GETDATE())
+                            AND MONTH(VH.FechaHoraRegistro) = MONTH(GETDATE())";
+
+                AccesoADatos datos = new AccesoADatos();
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    cantidadVentas = Convert.ToInt32(datos.Lector["CantidadVentas"]);
+                }
+
+                datos.cerrarConexion();
+            }
+            catch (Exception)
+            {
+                // Manejo de excepciones
+            }
+
+            return cantidadVentas;
+        }
+        public int ObtenerCantidadVentasDelAnio(int year)
+        {
+            int cantidadVentas = 0;
+
+            try
+            {
+                string consulta = $@"SELECT COUNT(*) AS CantidadVentas
+                            FROM VentasHistorial VH
+                            WHERE YEAR(VH.FechaHoraRegistro) = {year}";
+
+                AccesoADatos datos = new AccesoADatos();
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    cantidadVentas = Convert.ToInt32(datos.Lector["CantidadVentas"]);
+                }
+
+                datos.cerrarConexion();
+            }
+            catch (Exception)
+            {
+                // Manejo de excepciones
+            }
+
+            return cantidadVentas;
+        }
+
 
     }
 }

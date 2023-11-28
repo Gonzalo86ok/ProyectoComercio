@@ -12,16 +12,16 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Venta Del Día</h4>
+                        <h4>Ventas del día</h4>
                         <asp:Label ID="lbVentaDia" runat="server" Text="00.0" Style="font-size: 24px;"></asp:Label>
                     </div>
                     <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>$ Del Día</h4>
-                        <asp:Label ID="lbGastoDia" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                        <h4>Ventas del Mes</h4>
+                        <asp:Label ID="lbVentaMes" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
                     </div>
                     <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Rendimiento del Día</h4>
-                        <asp:Label ID="lbRendimientoDia" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                        <h4>Ventas del Año</h4>
+                        <asp:Label ID="lbVentaAnual" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -30,16 +30,16 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Venta Del Mes</h4>
-                        <asp:Label ID="lbVentaMes" runat="server" Text="00.0" Style="font-size: 24px;"></asp:Label>
+                        <h4>Monto del día</h4>
+                        <asp:Label ID="lbMontoDia" runat="server" Text="00.0" Style="font-size: 24px;"></asp:Label>
                     </div>
                     <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>$ Del Mes</h4>
-                        <asp:Label ID="lbGastoMes" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                        <h4>Monto del Mes</h4>
+                        <asp:Label ID="lbMontoMes" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
                     </div>
                     <div class="col" style="width: 100px; height: 100px; border: 1px solid black; background-color: gray">
-                        <h4>Rendimiento del Mes</h4>
-                        <asp:Label ID="lbRendimientoMes" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
+                        <h4>Monto del Año</h4>
+                        <asp:Label ID="lbMontoAnual" runat="server" Text="0.00" Style="font-size: 24px;"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -57,13 +57,6 @@
                 </li>
             </ul>
             <!-- Contenido de las pestañas -->
-
-
-
-
-
-
-
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="ventas" role="tabpanel" aria-labelledby="ventas-tab">
@@ -92,8 +85,6 @@
                                     <asp:Button ID="btnLimpiarVent" runat="server" Text="Limpiar búsqueda" CssClass="btn btn-secondary" OnClick="btnLimpiarVent_Click" />
                                 </div>
                             </div>
-
-
                             <hr class="my-4">
                             <!-- Línea separadora -->
                             <div class="row">
@@ -107,15 +98,19 @@
                             </div>
                         </div>
                     </div>
-                    <asp:GridView runat="server" ID="dgvHistorialVentas" DataKeyNames="Id" CssClass="table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto">
+                    <asp:GridView runat="server" ID="dgvHistorialVentas" AutoGenerateColumns="false" CssClass="mx-auto table table-striped table-bordered table-hover table-primary table table-bordered border-primary mx-auto" OnRowDataBound="dgvHistorialVentas_RowDataBound">
+                        <Columns>
+                            <asp:BoundField HeaderText="N° " />
+                            <asp:BoundField DataField="Fecha" HeaderText="Fecha y Hora" DataFormatString="{0:dd/MM/yyyy HH:mm:ss}" />
+                            <asp:BoundField DataField="Id" HeaderText="N° Venta" />
+                            <asp:BoundField DataField="Numero" HeaderText="N° Compra" />
+                            <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
+                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" DataFormatString="{0:F2}" />
+                            <asp:BoundField DataField="Monto" HeaderText="Valor" DataFormatString="{0:F2}" />
+                            <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                        </Columns>
                     </asp:GridView>
-                </div>
-              
-                
-                
-                
-                
-                
+                </div>           
                 <div class="tab-pane fade" id="stock" role="tabpanel" aria-labelledby="stock-tab">
                     <!-- Contenido del informe de modificaciones de stock -->
                     <div class="table-container pb-4 border border-primary-subtle p-2 mb-2  rounded bg-primary bg-opacity-50">
