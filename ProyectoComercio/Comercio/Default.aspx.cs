@@ -20,7 +20,7 @@ namespace Comercio
             {
                 try
                 {
-                    Session.Add("listaVentaInforme", ventaHistorialDetalleNegocio.ObtenerVentasInforme());
+                    Session["listaVentaInforme"] = ventaHistorialDetalleNegocio.ObtenerVentasInforme();
                     dgvHistorialVentas.DataSource = Session["listaVentaInforme"];
                     dgvHistorialVentas.DataBind();
 
@@ -76,13 +76,20 @@ namespace Comercio
 
         protected void BtnbusquedaRapidaVent_Click(object sender, EventArgs e)
         {
-            List<StockHistorialLista> lista = (List<StockHistorialLista>)Session["listaHistorialStock"];
-            List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()) && x.usuario.User.ToUpper().Contains(txtBusqueda.Text.ToUpper()));
-            dgvStockHistoria.DataSource = listaFiltrada;
-            dgvStockHistoria.DataBind();
-            Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
+            if (Session["listaVentaInforme"] != null)
+            {
+                List<VentaInforme> lista = (List<VentaInforme>)Session["listaVentaInforme"];
+                
+
+                List<VentaInforme> listaFiltrada = lista.FindAll(x => x.Producto.Nombre.ToUpper().Contains(TextBox3.Text.ToUpper()));
+
+                dgvHistorialVentas.DataSource = listaFiltrada;
+                dgvHistorialVentas.DataBind();
+                Page.ClientScript.RegisterStartupScript(GetType(), "hash", "location.hash = '#stock-tab';", true);
+            }
         }
-        // Stock filtros
+        // Stock filtros-----------------------------------------------------------
+        //-------------------------------------------------------------------------
         protected void btnStockFecha_Click(object sender, EventArgs e)
         {
             DateTime fechaDesde, fechaHasta;         
@@ -114,7 +121,7 @@ namespace Comercio
         protected void btnBusqRapidaStock_Click(object sender, EventArgs e)
         {
             List<StockHistorialLista> lista = (List<StockHistorialLista>)Session["listaHistorialStock"];
-            List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()) && x.usuario.User.ToUpper().Contains(txtBusqueda.Text.ToUpper()));           
+            List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()));           
             dgvStockHistoria.DataSource = listaFiltrada;
             dgvStockHistoria.DataBind();
 
