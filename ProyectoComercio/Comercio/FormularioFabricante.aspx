@@ -8,7 +8,7 @@
             <asp:ScriptManager runat="server" />
             <div class="form-container border border-secondary p-3">
                 <h5>Agregar Fabricante / Marca</h5>
-                <asp:Label runat="server" Text="Nombre Fabricante o Marca:" CssClass="form-label" />
+                <asp:Label runat="server" Text="Nombre Fabricante o Marca:" CssClass="form-label" MaxLength="40" />
                 <asp:TextBox runat="server" ID="TxtFabricante" CssClass="form-control" />
                 <div class="button-container mt-4">
                     <asp:Button runat="server" ID="btnAgregarFabricante" OnClick="agregarFabricante_Click" Text="Agregar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />

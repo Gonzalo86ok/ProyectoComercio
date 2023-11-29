@@ -31,7 +31,23 @@ namespace Comercio
                 Medida nuevo = new Medida();
                 MedidaNegocio medidaNegocio = new MedidaNegocio();
 
-                nuevo.Tipo = TxtMedida.Text;
+                string medida = TxtMedida.Text.Trim();
+
+                // Validar si el campo de la medida está vacío
+                if (string.IsNullOrWhiteSpace(medida))
+                {
+                    // Manejar la validación de campo vacío aquí
+                    // Por ejemplo, cambiar el estilo del campo de texto a 'is-invalid'
+                    TxtMedida.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    // El campo es válido, cambiar el estilo a 'is-valid'
+                    TxtMedida.CssClass = "form-control is-valid";
+                }
+
+                nuevo.Tipo = medida;
 
                 if (Request.QueryString["id"] != null)
                 {
@@ -39,9 +55,11 @@ namespace Comercio
                     medidaNegocio.modificarMedida(nuevo);
                 }
                 else
+                {
                     medidaNegocio.agregarMedida(nuevo);
+                }
 
-                Response.Redirect("Productos.aspx", false);
+                //Response.Redirect("Productos.aspx", false);
             }
             catch (Exception ex)
             {
@@ -49,6 +67,7 @@ namespace Comercio
                 throw;
             }
         }
+
         protected void btnCancelarMedida_Click(object sender, EventArgs e)
         {
             Response.Redirect("Productos.aspx", false);

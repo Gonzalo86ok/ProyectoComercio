@@ -89,7 +89,7 @@
                                 <div class="col-md-6">
                                     <label for="txtBusqueda" class="form-label">Búsqueda rápida:</label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>
+                                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="Buscar..." MaxLength="40"></asp:TextBox>
                                         <asp:Button ID="BtnbusquedaRapidaVent" runat="server" Text="Buscar" CssClass="btn btn-secondary" OnClick="BtnbusquedaRapidaVent_Click" />
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
                                 <div class="col-md-6">
                                     <label for="txtBusqueda" class="form-label">Búsqueda rapida:</label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control" placeholder="Buscar..."></asp:TextBox>
+                                        <asp:TextBox ID="txtBusqueda" runat="server" CssClass="form-control" placeholder="Buscar..." MaxLength="40"></asp:TextBox>
                                         <asp:Button ID="btnBusqRapidaStock" runat="server" Text="Buscar" CssClass="btn btn-secondary" OnClick="btnBusqRapidaStock_Click" />
                                     </div>
                                 </div>

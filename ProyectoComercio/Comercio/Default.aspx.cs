@@ -79,9 +79,9 @@ namespace Comercio
             if (Session["listaVentaInforme"] != null)
             {
                 List<VentaInforme> lista = (List<VentaInforme>)Session["listaVentaInforme"];
-                
 
-                List<VentaInforme> listaFiltrada = lista.FindAll(x => x.Producto.Nombre.ToUpper().Contains(TextBox3.Text.ToUpper()));
+
+                List<VentaInforme> listaFiltrada = lista.FindAll(x => x.Producto.Nombre.ToUpper().Contains(TextBox3.Text.ToUpper()) || x.Usuario.ToUpper().Contains(TextBox3.Text.ToUpper()));
 
                 dgvHistorialVentas.DataSource = listaFiltrada;
                 dgvHistorialVentas.DataBind();
@@ -100,7 +100,7 @@ namespace Comercio
                 fechaHasta = fechaHasta.Date.AddDays(1).AddTicks(-1);
 
                 List<StockHistorialLista> lista = (List<StockHistorialLista>)Session["listaHistorialStock"];
-                List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.FechaHoraRegistro >= fechaDesde && x.FechaHoraRegistro <= fechaHasta);
+                List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()) || x.usuario.User.ToUpper().Contains(txtBusqueda.Text.ToUpper()));
 
                 dgvStockHistoria.DataSource = listaFiltrada;
                 dgvStockHistoria.DataBind();
@@ -121,7 +121,8 @@ namespace Comercio
         protected void btnBusqRapidaStock_Click(object sender, EventArgs e)
         {
             List<StockHistorialLista> lista = (List<StockHistorialLista>)Session["listaHistorialStock"];
-            List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()));           
+            List<StockHistorialLista> listaFiltrada = lista.FindAll(x => x.producto.Nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper()) || x.usuario.User.ToUpper().Contains(txtBusqueda.Text.ToUpper()));
+
             dgvStockHistoria.DataSource = listaFiltrada;
             dgvStockHistoria.DataBind();
 

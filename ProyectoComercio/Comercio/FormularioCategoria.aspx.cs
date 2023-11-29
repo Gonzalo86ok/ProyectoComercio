@@ -35,7 +35,23 @@ namespace Comercio
                 Categoria nuevo = new Categoria();
                 CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
 
-                nuevo.Tipo= TxtCategoria.Text;              
+                string categoria = TxtCategoria.Text.Trim();
+
+                // Validar si el campo de categoría está vacío
+                if (string.IsNullOrWhiteSpace(categoria))
+                {
+                    // Manejar la validación de campo vacío aquí
+                    // Por ejemplo, cambiar el estilo del campo de texto a 'is-invalid' 
+                    TxtCategoria.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    // El campo es válido, cambiar el estilo a 'is-valid'
+                    TxtCategoria.CssClass = "form-control is-valid";
+                }
+
+                nuevo.Tipo = categoria;
 
                 if (Request.QueryString["id"] != null)
                 {
@@ -43,9 +59,11 @@ namespace Comercio
                     categoriaNegocio.modificarCategoria(nuevo);
                 }
                 else
+                {
                     categoriaNegocio.agregarCategoria(nuevo);
+                }
 
-                Response.Redirect("Productos.aspx", false);
+                //Response.Redirect("Productos.aspx", false);
             }
             catch (Exception ex)
             {
@@ -53,6 +71,7 @@ namespace Comercio
                 throw;
             }
         }
+
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             ConfirmaEliminacion = true;

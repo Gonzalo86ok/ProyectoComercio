@@ -11,13 +11,13 @@
             <div class="col-md-6">
 
                 <asp:Label runat="server" Text="Código:" CssClass="form-label" />
-                <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" MaxLength="8" />
 
                 <asp:Label runat="server" Text="Nombre:" CssClass="form-label" />
-                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" MaxLength="40"/>
 
                 <asp:Label runat="server" Text="Descripción:" CssClass="form-label" />
-                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" MaxLength="100"/>
 
                 <asp:Label runat="server" Text="Precio:" CssClass="form-label" />
                 <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />

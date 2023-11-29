@@ -80,20 +80,24 @@ namespace Negocio
             try
             {
                 string consulta =
-                   "SELECT " +
-                       "P.Id, " +
-                       "P.Codigo, " +
-                       "P.Nombre, " +
-                       "P.Descripcion, " +
-                       "P.Precio, " +
-                       "P.Activo, " +
-                       "C.Tipo AS Categoria, " +
-                       "F.Nombre AS Fabricante, " +
-                       "M.Tipo AS Medida " +
-                   "FROM PRODUCTOS AS P " +
-                   "INNER JOIN CATEGORIAS AS C ON P.IdCategoria = C.Id " +
-                   "INNER JOIN FABRICANTES AS F ON P.IdFabricante = F.Id " +
-                   "INNER JOIN MEDIDAS AS M ON P.IdMedida = M.Id where P.Id = @id" ;
+                    "SELECT " +
+                        "P.Id, " +
+                        "P.Codigo, " +
+                        "P.Nombre, " +
+                        "P.Descripcion, " +
+                        "P.Precio, " +
+                        "P.Activo, " +
+                        "C.Id AS IdCategoria, " +
+                        "C.Tipo AS Categoria, " +
+                        "F.Id AS IdFabricante, " +
+                        "F.Nombre AS Fabricante, " +
+                        "M.Id AS IdMedida, " +
+                        "M.Tipo AS Medida " +
+                    "FROM PRODUCTOS AS P " +
+                    "INNER JOIN CATEGORIAS AS C ON P.IdCategoria = C.Id " +
+                    "INNER JOIN FABRICANTES AS F ON P.IdFabricante = F.Id " +
+                    "INNER JOIN MEDIDAS AS M ON P.IdMedida = M.Id " +
+                    "WHERE P.Id = @id";
 
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@id", id);
@@ -105,16 +109,20 @@ namespace Negocio
                     producto.Codigo = (string)datos.Lector["Codigo"];
                     producto.Nombre = (string)datos.Lector["Nombre"];
                     producto.Descripcion = (string)datos.Lector["Descripcion"];
-                    producto.Precio = (decimal)datos.Lector["Precio"];                                      
+                    producto.Precio = (decimal)datos.Lector["Precio"];
+                    producto.Activo = (bool)datos.Lector["Activo"];
 
                     producto.Fabricante = new Fabricante();
+                    producto.Fabricante.Id = (int)datos.Lector["IdFabricante"]; // Agregado
                     producto.Fabricante.Nombre = (string)datos.Lector["Fabricante"];
 
                     producto.Medida = new Medida();
+                    producto.Medida.Id = (int)datos.Lector["IdMedida"]; // Agregado
                     producto.Medida.Tipo = (string)datos.Lector["Medida"];
 
                     producto.Categoria = new Categoria();
-                    producto.Categoria.Tipo = (string)datos.Lector["Categoria"];                   
+                    producto.Categoria.Id = (int)datos.Lector["IdCategoria"]; // Agregado
+                    producto.Categoria.Tipo = (string)datos.Lector["Categoria"];
                 }
                 return producto;
             }

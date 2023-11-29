@@ -68,6 +68,7 @@ namespace Comercio
                 throw;
             }
         }
+
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
@@ -75,35 +76,101 @@ namespace Comercio
                 Producto nuevo = new Producto();
                 ProductoNegocio productoNegocio = new ProductoNegocio();
 
-                nuevo.Codigo = txtCodigo.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
+                string codigo = txtCodigo.Text.Trim();
+                string nombre = txtNombre.Text.Trim();
+                string descripcion = txtDescripcion.Text.Trim();
                 string precioText = txtPrecio.Text.Replace('.', ',');
-                if (decimal.TryParse(precioText, out decimal precio))
+
+                // Validación de cada campo individualmente
+                if (string.IsNullOrWhiteSpace(codigo))
                 {
-                    nuevo.Precio = precio;
+                    txtCodigo.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    txtCodigo.CssClass = "form-control is-valid";
                 }
 
+                if (string.IsNullOrWhiteSpace(nombre))
+                {
+                    txtNombre.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    txtNombre.CssClass = "form-control is-valid";
+                }
+
+                if (string.IsNullOrWhiteSpace(descripcion))
+                {
+                    txtDescripcion.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    txtDescripcion.CssClass = "form-control is-valid";
+                }
+
+                if (string.IsNullOrWhiteSpace(precioText))
+                {
+                    txtPrecio.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    txtPrecio.CssClass = "form-control is-valid";
+                }
+
+                // Validación de precio numérico
+                if (!decimal.TryParse(precioText, out decimal precio))
+                {
+                    txtPrecio.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    txtPrecio.CssClass = "form-control is-valid";
+                }
+
+                // Validación de precio no negativo
+                if (precio < 0)
+                {
+                    txtPrecio.CssClass = "form-control is-invalid";
+                    return;
+                }
+                else
+                {
+                    txtPrecio.CssClass = "form-control is-valid";
+                }
+
+
+
+                // Asignación de valores al producto
+                nuevo.Codigo = codigo;
+                nuevo.Nombre = nombre;
+                nuevo.Descripcion = descripcion;
+                nuevo.Precio = decimal.Parse(precioText);
                 nuevo.Categoria = new Categoria();
                 nuevo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
-
                 nuevo.Fabricante = new Fabricante();
                 nuevo.Fabricante.Id = int.Parse(ddlFabricante.SelectedValue);
-
                 nuevo.Medida = new Medida();
                 nuevo.Medida.Id = int.Parse(ddlMedida.SelectedValue);
-
                 nuevo.Activo = true;
 
+                // Guardar el producto si todas las validaciones son exitosas
                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
                     productoNegocio.modificar(nuevo);
                 }
                 else
+                {
                     productoNegocio.agregar(nuevo);
+                }
 
-                Response.Redirect("Productos.aspx", false);
+                //Response.Redirect("Productos.aspx", false);
             }
             catch (Exception ex)
             {
@@ -111,6 +178,7 @@ namespace Comercio
                 throw;
             }
         }
+
         protected void Cancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Productos.aspx", false);
