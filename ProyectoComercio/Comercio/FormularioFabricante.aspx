@@ -8,8 +8,8 @@
             <asp:ScriptManager runat="server" />
             <div class="form-container border border-secondary p-3">
                 <h5>Agregar Fabricante / Marca</h5>
-                <asp:Label runat="server" Text="Nombre Fabricante o Marca:" CssClass="form-label" MaxLength="40" />
-                <asp:TextBox runat="server" ID="TxtFabricante" CssClass="form-control" />
+                <asp:Label runat="server" Text="Nombre Fabricante o Marca:" CssClass="form-label"  />
+                <asp:TextBox runat="server" ID="TxtFabricante" CssClass="form-control" MaxLength="40"/>
 
                 <div class="form-group">
                     <asp:Label runat="server" ID="lblMensajeError" CssClass="text-danger" Visible="false" />

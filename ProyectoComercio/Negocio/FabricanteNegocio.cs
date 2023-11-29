@@ -138,26 +138,23 @@ namespace Negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                string consulta = "SELECT Nombre, Activo from FABRICANTES";
+                string consulta = "SELECT Nombre, Activo FROM FABRICANTES WHERE Nombre = @Nombre AND Activo = 1";
 
                 datos.setearConsulta(consulta);
+                datos.setearParametro("@Nombre", nombre.ToUpper());
                 datos.ejecutarLectura();
-
-                Fabricante fabricante = new Fabricante();
 
                 while (datos.Lector.Read())
                 {
-                    fabricante.Nombre = (string)datos.Lector["Nombre"];
-                    fabricante.Activo = (bool)datos.Lector["Activo"];
+                    string nombreEncontrado = (string)datos.Lector["Nombre"];
+                    bool activo = (bool)datos.Lector["Activo"];
 
-                    if (fabricante.Activo == true)
+                    if (activo && nombreEncontrado.ToUpper() == nombre.ToUpper())
                     {
-                        if (nombre.ToUpper() == fabricante.Nombre)
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
+
                 return false;
             }
             catch (Exception ex)
@@ -167,7 +164,8 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
-            }                   
+            }
         }
+
     }
 }

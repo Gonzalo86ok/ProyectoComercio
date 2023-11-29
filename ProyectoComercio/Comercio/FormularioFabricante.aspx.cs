@@ -30,7 +30,7 @@ namespace Comercio
             {
                 Fabricante nuevo = new Fabricante();
                 FabricanteNegocio fabricanteNegocio = new FabricanteNegocio();
-                string fabricante = TxtFabricante.Text.Trim();
+                string fabricante = TxtFabricante.Text.Trim(); 
 
                 // Validar si el campo del fabricante está vacío
                 if (string.IsNullOrWhiteSpace(fabricante))
