@@ -135,6 +135,42 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
+        public bool tipoRepetido(string tipo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                string consulta = "SELECT Tipo, Activo from CATEGORIAS";
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                Categoria categoria = new Categoria();
+
+                while (datos.Lector.Read())
+                {
+                    categoria.Tipo = (string)datos.Lector["Tipo"];
+                    categoria.Activo = (bool)datos.Lector["Activo"];
+
+                    if (categoria.Activo == true)
+                    {
+                        if (tipo.ToUpper() == categoria.Tipo)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
 

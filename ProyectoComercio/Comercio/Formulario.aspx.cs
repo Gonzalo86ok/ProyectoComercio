@@ -144,8 +144,6 @@ namespace Comercio
                     txtPrecio.CssClass = "form-control is-valid";
                 }
 
-
-
                 // Asignación de valores al producto
                 nuevo.Codigo = codigo;
                 nuevo.Nombre = nombre;
@@ -164,13 +162,24 @@ namespace Comercio
                 {
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
                     productoNegocio.modificar(nuevo);
+                    Response.Redirect("Productos.aspx", false);
                 }
                 else
                 {
-                    productoNegocio.agregar(nuevo);
+                    if (productoNegocio.codigoRepetido(nuevo.Codigo))
+                    {
+                        lblMensajeError.Text = "El código del producto ya existe. No se puede ingresar.";
+                        lblMensajeError.Visible = true;
+                        txtCodigo.Text = "";
+                        txtCodigo.CssClass = "form-control is-invalid";
+                    }
+                    else
+                    {
+                        lblMensajeError.Visible = false;
+                        productoNegocio.agregar(nuevo);
+                        Response.Redirect("Productos.aspx", false);
+                    }
                 }
-
-                //Response.Redirect("Productos.aspx", false);
             }
             catch (Exception ex)
             {

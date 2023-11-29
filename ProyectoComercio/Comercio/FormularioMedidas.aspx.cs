@@ -53,13 +53,24 @@ namespace Comercio
                 {
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
                     medidaNegocio.modificarMedida(nuevo);
+                    Response.Redirect("Productos.aspx", false);
                 }
                 else
                 {
-                    medidaNegocio.agregarMedida(nuevo);
-                }
-
-                //Response.Redirect("Productos.aspx", false);
+                    if (medidaNegocio.tipoRepetido(nuevo.Tipo))
+                    {
+                        lblMensajeError.Text = "El tipo de medida ya existe. No se puede ingresar.";
+                        lblMensajeError.Visible = true;
+                        TxtMedida.Text = "";
+                        TxtMedida.CssClass = "form-control is-valid";
+                    }
+                    else
+                    {
+                        lblMensajeError.Visible = false;                       
+                        medidaNegocio.agregarMedida(nuevo);
+                        Response.Redirect("Productos.aspx", false);
+                    }
+                }               
             }
             catch (Exception ex)
             {

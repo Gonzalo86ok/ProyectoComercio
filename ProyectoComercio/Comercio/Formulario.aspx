@@ -13,11 +13,15 @@
                 <asp:Label runat="server" Text="Código:" CssClass="form-label" />
                 <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" MaxLength="8" />
 
+                <div class="form-group">
+                    <asp:Label runat="server" ID="lblMensajeError" CssClass="text-danger" Visible="false" />
+                </div>
+
                 <asp:Label runat="server" Text="Nombre:" CssClass="form-label" />
-                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" MaxLength="40"/>
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" MaxLength="40" />
 
                 <asp:Label runat="server" Text="Descripción:" CssClass="form-label" />
-                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" MaxLength="100"/>
+                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" MaxLength="100" />
 
                 <asp:Label runat="server" Text="Precio:" CssClass="form-label" />
                 <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
@@ -54,6 +58,7 @@
                                 <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
                             </div>
                             <%if (ConfirmaEliminacion)
+
                                 {%>
                             <div class="md-3">
                                 <asp:CheckBox Text="Confirmar Eliminación" ID="chkConfirmaEliminacion" runat="server" />
@@ -67,3 +72,6 @@
         </div>
     </div>
 </asp:Content>
+
+
+

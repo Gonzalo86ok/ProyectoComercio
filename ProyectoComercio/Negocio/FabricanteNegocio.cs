@@ -133,5 +133,41 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
+        public bool nombreRepetido(string nombre)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                string consulta = "SELECT Nombre, Activo from FABRICANTES";
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                Fabricante fabricante = new Fabricante();
+
+                while (datos.Lector.Read())
+                {
+                    fabricante.Nombre = (string)datos.Lector["Nombre"];
+                    fabricante.Activo = (bool)datos.Lector["Activo"];
+
+                    if (fabricante.Activo == true)
+                    {
+                        if (nombre.ToUpper() == fabricante.Nombre)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }                   
+        }
     }
 }

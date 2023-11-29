@@ -30,7 +30,6 @@ namespace Comercio
             {
                 Fabricante nuevo = new Fabricante();
                 FabricanteNegocio fabricanteNegocio = new FabricanteNegocio();
-
                 string fabricante = TxtFabricante.Text.Trim();
 
                 // Validar si el campo del fabricante está vacío
@@ -53,13 +52,24 @@ namespace Comercio
                 {
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
                     fabricanteNegocio.modificarFabricante(nuevo);
+                    Response.Redirect("Productos.aspx", false);
                 }
                 else
                 {
-                    fabricanteNegocio.agregarFabricante(nuevo);
-                }
-
-                //Response.Redirect("Productos.aspx", false);
+                    if(fabricanteNegocio.nombreRepetido(nuevo.Nombre))
+                    {
+                        lblMensajeError.Text = "El nombre del fabeicante está repetido. No se puede ingresar.";
+                        lblMensajeError.Visible = true;
+                        TxtFabricante.Text = "";
+                        TxtFabricante.CssClass = "form-control is-valid";
+                    }
+                    else
+                    {
+                        lblMensajeError.Visible = false;
+                        fabricanteNegocio.agregarFabricante(nuevo);
+                        Response.Redirect("Productos.aspx", false);
+                    }
+                }               
             }
             catch (Exception ex)
             {
@@ -67,7 +77,6 @@ namespace Comercio
                 throw;
             }
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Productos.aspx");
@@ -76,7 +85,6 @@ namespace Comercio
         {
             ConfirmaEliminacion = true;
         }
-
         protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
         {
             try

@@ -300,5 +300,41 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
+        public bool codigoRepetido(string codigo)
+        {          
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                string consulta = "SELECT Codigo, Activo FROM PRODUCTOS";
+                                               
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                Producto producto = new Producto();
+                
+                while (datos.Lector.Read())
+                {                                    
+                    producto.Codigo = (string)datos.Lector["Codigo"];
+                    producto.Activo = (bool)datos.Lector["Activo"];
+
+                    if (producto.Activo == true)
+                    {
+                        if(codigo.ToUpper() == producto.Codigo)
+                        {                           
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

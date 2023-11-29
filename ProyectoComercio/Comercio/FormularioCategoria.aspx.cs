@@ -57,13 +57,26 @@ namespace Comercio
                 {
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
                     categoriaNegocio.modificarCategoria(nuevo);
+                    Response.Redirect("Productos.aspx", false);
                 }
                 else
                 {
-                    categoriaNegocio.agregarCategoria(nuevo);
+                    if (categoriaNegocio.tipoRepetido(nuevo.Tipo))
+                    {
+                        lblMensajeError.Text = "El tipo de categoria ya existe. No se puede ingresar.";
+                        lblMensajeError.Visible = true;
+                        TxtCategoria.Text = "";
+                        TxtCategoria.CssClass = "form-control is-invalid";
+                    }
+                    else
+                    {
+                        lblMensajeError.Visible = false;
+                        categoriaNegocio.agregarCategoria(nuevo);
+                        Response.Redirect("Productos.aspx", false);
+                    }
+                    
                 }
 
-                //Response.Redirect("Productos.aspx", false);
             }
             catch (Exception ex)
             {

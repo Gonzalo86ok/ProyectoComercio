@@ -10,10 +10,17 @@
                 <h5>Agregar Fabricante / Marca</h5>
                 <asp:Label runat="server" Text="Nombre Fabricante o Marca:" CssClass="form-label" MaxLength="40" />
                 <asp:TextBox runat="server" ID="TxtFabricante" CssClass="form-control" />
+
+                <div class="form-group">
+                    <asp:Label runat="server" ID="lblMensajeError" CssClass="text-danger" Visible="false" />
+                </div>
+
                 <div class="button-container mt-4">
-                    <asp:Button runat="server" ID="btnAgregarFabricante" OnClick="agregarFabricante_Click" Text="Agregar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
-                    <asp:Button runat="server" ID="btnCancelar" OnClick="btnCancelar_Click" Text="Cancelar" CssClass="btn btn-outline-primary ml-2 mt-4 " Style="margin-right: 10px;" />
-                    <asp:Button Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" />
+                    <div class="btn-group">
+                        <asp:Button runat="server" ID="btnAgregarFabricante" OnClick="agregarFabricante_Click" Text="Agregar" CssClass="btn btn-outline-primary btn-block mt-4" Style="margin-right: 10px;" />
+                        <asp:Button runat="server" ID="btnCancelar" OnClick="btnCancelar_Click" Text="Cancelar" CssClass="btn btn-outline-primary btn-block mt-4" Style="margin-right: 10px;" />
+                        <asp:Button Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger btn-block mt-4" runat="server"/>
+                    </div>
                 </div>
                 <asp:UpdatePanel ID="UpdatePanel" runat="server">
                     <ContentTemplate>

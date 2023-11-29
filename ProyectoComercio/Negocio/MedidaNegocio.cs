@@ -131,6 +131,41 @@ namespace Negocio
                 dato.cerrarConexion();
             }
         }
+        public bool tipoRepetido(string tipo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                string consulta = "SELECT Tipo, Activo from MEDIDAS";
 
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                Medida medida = new Medida();
+
+                while (datos.Lector.Read())
+                {
+                    medida.Tipo = (string)datos.Lector["Tipo"];
+                    medida.Activo = (bool)datos.Lector["Activo"];
+
+                    if (medida.Activo == true)
+                    {
+                        if (tipo.ToUpper() == medida.Tipo)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
