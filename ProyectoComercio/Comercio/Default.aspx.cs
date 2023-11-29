@@ -13,6 +13,12 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                Session.Add("error", "Necesitas Registro de Administrador");
+                Response.Redirect("error.aspx", false);
+            }
+
             VentasHistorialNegocio ventasHistorialNegocio = new VentasHistorialNegocio();
             StockHistorialNegocio stockHistorialNegocio = new StockHistorialNegocio();
             VentaHistorialDetalleNegocio ventaHistorialDetalleNegocio = new VentaHistorialDetalleNegocio();

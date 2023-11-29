@@ -26,7 +26,7 @@ namespace Comercio
                 if (negocio.Login(usuario) && usuario.User != null)
                 {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx", false);
+                    Response.Redirect("VentaPage.aspx", false);
                 }
                 else
                 {

@@ -33,11 +33,17 @@
                 <div class="container-fluid" style="font-weight: bold; font-size: 16px;">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
+                             <%if (Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.Admin)
+                                 { %>
                             <a class="nav-link active" aria-current="page" href="Default.aspx">Informes</a>
+                             <%} %>
                             <a class="nav-link" href="VentaPage.aspx">Venta</a>                           
                             <a class="nav-link" href="InventarioPage.aspx">Stock</a>
+                             <%if (Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.Admin)
+                                 { %>
                             <a class="nav-link" href="Productos.aspx">Producto</a>
                             <a class="nav-link" href="UsuarioPage.aspx">Usuario</a>
+                              <%} %>
                             <a class="nav-link disabled" aria-disabled="true"></a>  
                         </div>
                     </div>
