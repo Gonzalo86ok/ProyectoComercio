@@ -13,6 +13,12 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                Session.Add("error", "Necesitas Registro de Administrador");
+                Response.Redirect("error.aspx", false);
+            }
+
             StockItem stockItem = new StockItem();
             StockNegocio stockNegocio = new StockNegocio();
             if (!IsPostBack)

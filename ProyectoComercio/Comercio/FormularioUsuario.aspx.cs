@@ -13,7 +13,22 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+               
+                if (Request.QueryString["Id"] != null)
+                {
+                    int usuarioId = int.Parse(Request.QueryString["Id"]);
 
+                    
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    Usuario usuarioAModificar = negocio.obtenerUsuarioPorId(usuarioId);
+
+                   
+                    txtUsuario.Text = usuarioAModificar.User;
+                    txtContraseña.Text = usuarioAModificar.Pass;
+                }
+            }
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {

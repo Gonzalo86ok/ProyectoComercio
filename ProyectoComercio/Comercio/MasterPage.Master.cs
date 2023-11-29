@@ -19,11 +19,10 @@ namespace Comercio
                 lblNombreUsuario.Text = usuario.User;
             }
 
-            if (!(Page is LoginPage || Page is RegistrarUsuario || Page is Default))
+            
                 if (!Seguridad.sesionActiva(Session["usuario"]))
                 {
-                    /* Session.Add("error", "Se necesita iniciar sesion con Usuario y Contraseña para acceder");
-                     Response.Redirect("error.aspx", false);*/
+                    
                     Response.Redirect("LoginPage.aspx", false);
                 }
         }

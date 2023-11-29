@@ -14,6 +14,11 @@ namespace Comercio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                Session.Add("error", "Necesitas Registro de Administrador");
+                Response.Redirect("error.aspx", false);
+            }
             Categoria categoria = new Categoria();
             CategoriaNegocio dato = new CategoriaNegocio();
 

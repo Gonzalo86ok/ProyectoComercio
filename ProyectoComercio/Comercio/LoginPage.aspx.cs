@@ -40,10 +40,6 @@ namespace Comercio
                 throw ex;
             }
         }
-        protected void btnVolver_Click1(object sender, EventArgs e)
-        {
-
-            Response.Redirect("Default.aspx", false);
-        }
+       
     }
 }

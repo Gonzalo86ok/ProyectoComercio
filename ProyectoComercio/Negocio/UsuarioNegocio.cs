@@ -161,7 +161,8 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("Select ID, Usuario, Contraseña, TipoUsuario From USUARIOS where Usuario = @user and Contraseña = @pass");
+              
+                datos.setearConsulta("Select ID, Usuario, Contraseña, TipoUsuario, Activo From USUARIOS where Usuario = @user and Contraseña = @pass and Activo = 1");
                 datos.setearParametro("@user", usuario.User);
                 datos.setearParametro("@pass", usuario.Pass);
                 datos.ejecutarLectura();
@@ -198,6 +199,37 @@ namespace Negocio
 
                 
                 return resultado > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Usuario obtenerUsuarioPorId(int usuarioId)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                string consulta = "SELECT ID, Usuario, Contraseña FROM USUARIOS WHERE ID = @id";
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@id", usuarioId);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    usuario.Id = (int)datos.Lector["ID"];
+                    usuario.User = (string)datos.Lector["Usuario"];
+                    usuario.Pass = (string)datos.Lector["Contraseña"];
+                }
+
+                return usuario;
             }
             catch (Exception ex)
             {
